@@ -1,8 +1,24 @@
 import { extendTheme } from '@chakra-ui/react';
+import { mode } from '@chakra-ui/theme-tools';
 
-// Colors
-const colors = {
-	background: '#111',
+const colors = {};
+
+const styles = {
+	global: (props) => ({
+		body: {
+			bg: mode('white', '#111')(props),
+			color: mode('black', 'whiteAlpha.900')(props),
+		},
+	}),
 };
 
-export default extendTheme({ colors });
+const fonts = {
+	body: 'IBM Plex Sans',
+};
+
+export const config = {
+	initialColorMode: 'light',
+	useSystemColorMode: false,
+};
+
+export default extendTheme({ config, styles, colors, fonts });
