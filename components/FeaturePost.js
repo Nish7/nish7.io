@@ -1,11 +1,14 @@
 import {
 	Box,
 	Flex,
+	Icon,
 	Tag,
 	Text,
 	useColorMode,
 	useColorModeValue,
 } from '@chakra-ui/react';
+
+import { MdDateRange } from 'react-icons/md';
 
 function FeaturePost() {
 	return (
@@ -13,34 +16,53 @@ function FeaturePost() {
 			<Text fontSize="3xl" fontWeight="semibold" mb={5}>
 				Featured Posts
 			</Text>
-			<Flex justify="space-evenly" align="flex-start">
-				<BlogBox />
-				<BlogBox />
-				<BlogBox />
+			<Flex justify="space-evenly">
+				<BlogBox
+					title="Everything I Know About Style Guides, Design Systems"
+					date="21/01/2021"
+				/>
+
+				<BlogBox
+					title="Rust Is The Future of JavaScript Infrastructure"
+					date="12/12/2021"
+				/>
+
+				<BlogBox
+					title="Past, Present, and Future of React State Management"
+					date="22/02/2021"
+				/>
 			</Flex>
 		</>
 	);
 }
 
-function BlogBox() {
-	const bg = useColorModeValue('gray.50', 'whiteAlpha.100');
+function BlogBox({ title, date }) {
+	// const bg = useColorModeValue('rgba(0,0,0,0.5)', 'white');
+	const bg = useColorModeValue('gray.100', 'whiteAlpha.200');
 
 	return (
-		<Box p={5} boxShadow="sm" mr={5} bg={bg} cursor="pointer" borderRadius={10}>
-			<Text fontSize="lg" fontWeight="semibold">
-				Lorem Ipsum
+		<Flex
+			p={6}
+			flexDirection="column"
+			justify="space-between"
+			boxShadow="sm"
+			mr={5}
+			bg={bg}
+			// border={`1.5px ${bg} solid`}
+			cursor="pointer"
+			borderRadius={10}
+			minH={20}
+			w={1 / 3}
+		>
+			<Text fontSize="md" fontWeight="semibold" w="90%">
+				{title}
 			</Text>
-			<Text fontSize="sm" mb={4}>
-				12/12/21
-			</Text>
-			<Tag mr={2}>School</Tag>
-			<Tag>React</Tag>
 
-			<Text mt={4}>
-				Ipsum magna proident mollit excepteur est ex ut sit qui magna
-				reprehenderit...
-			</Text>
-		</Box>
+			<Flex mt={5}>
+				<Icon as={MdDateRange} mr={1} />
+				<Text fontSize="sm">{date}</Text>
+			</Flex>
+		</Flex>
 	);
 }
 

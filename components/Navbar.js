@@ -1,15 +1,18 @@
 import { Box, Button, Text, Icon, Flex } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { AiFillHome, AiFillBook, AiFillStar } from 'react-icons/ai';
 import {
 	BsStack,
 	BsCircleFill,
-	BsSpotify,
 	BsGithub,
 	BsArrowUpRight,
 	BsTwitter,
 } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
+import { RiGameFill } from 'react-icons/ri';
 import CurrentPlaying from './CurrentPlaying';
+import ColorModeBtn from './ColorModeBtn';
 
 function Navbar({ ...rest }) {
 	return (
@@ -17,7 +20,7 @@ function Navbar({ ...rest }) {
 			<Text fontWeight="semibold" pl={3} justifySelf="flex-start"></Text>
 
 			<Box mt={5}>
-				<NavLink icon={<AiFillHome />} active>
+				<NavLink href="/" icon={<AiFillHome />}>
 					Home
 				</NavLink>
 				<NavLink icon={<FaPen />}>Writing</NavLink>
@@ -27,62 +30,73 @@ function Navbar({ ...rest }) {
 			<Box mt={10}>
 				<SectionTitle>Me</SectionTitle>
 
-				<NavLink icon={<AiFillBook />}>Bookmarks</NavLink>
+				<NavLink href="/bookmarks" icon={<AiFillBook />}>
+					Bookmarks
+				</NavLink>
 				<NavLink icon={<BsStack />}>Stack</NavLink>
 				<NavLink icon={<AiFillStar />}>Technologies</NavLink>
+				<NavLink icon={<RiGameFill />}>Misc</NavLink>
 			</Box>
 
 			{/* Projects */}
 			<Box mt={10}>
 				<SectionTitle>Recent Projects</SectionTitle>
-				<NavLink
-					icon={<Icon as={BsCircleFill} color="yellow.500" boxSize={2} />}
-				>
+				<NavLink noActive icon={<StatusIcon color="red" />}>
 					B2C
 				</NavLink>
-				<NavLink icon={<Icon as={BsCircleFill} color="green" boxSize={2} />}>
+				<NavLink noActive icon={<StatusIcon color="blue" />}>
 					Humans of Surat
 				</NavLink>
-				<NavLink icon={<Icon as={BsCircleFill} color="green" boxSize={2} />}>
+				<NavLink noActive icon={<StatusIcon color="blue" />}>
 					TheTray
 				</NavLink>
-				<NavLink icon={<Icon as={BsCircleFill} color="red.500" boxSize={2} />}>
+				<NavLink noActive icon={<StatusIcon color="green" />}>
 					TodoKage
 				</NavLink>
 			</Box>
 
 			<Box mt={10}>
 				<SectionTitle>Social</SectionTitle>
-				<NavLink icon={<BsTwitter />} isLink>
+				<NavLink noActive icon={<BsTwitter />} isLink>
 					Twitter
 				</NavLink>
-				<NavLink icon={<BsGithub />}>Github</NavLink>
+				<NavLink noActive icon={<BsGithub />}>
+					Github
+				</NavLink>
 			</Box>
 
-			<CurrentPlaying />
+			<Box mt="auto" w="100%">
+				<CurrentPlaying />
+				<ColorModeBtn />
+			</Box>
 		</Flex>
 	);
 }
 
-function NavLink({ children, icon, active, isLink }) {
-	return (
-		<Flex mb="3px" align="center" justify="space-between">
-			<Button
-				h="auto"
-				isFullWidth
-				leftIcon={icon}
-				justifyContent="flex-start"
-				variant={active ? 'solid' : 'ghost'}
-				px={3}
-				py={2}
-			>
-				<Text fontSize="sm" fontWeight={500}>
-					{children}
-				</Text>
-			</Button>
+function NavLink({ children, icon, noActive, isLink, href = '/coming-soon' }) {
+	const { pathname } = useRouter();
+	const active = noActive || href == '/coming-soon' ? false : pathname == href;
 
-			{isLink && <Icon as={BsArrowUpRight} boxSize={3} color="gray.500" />}
-		</Flex>
+	return (
+		<Link href={href} passHref>
+			<Flex mb="3px" align="center" justify="space-between">
+				<Button
+					h="auto"
+					isFullWidth
+					leftIcon={icon}
+					justifyContent="flex-start"
+					variant={active ? 'solid' : 'ghost'}
+					px={3}
+					py={2}
+					_focus={{ boxShadow: 'none' }}
+				>
+					<Text fontSize="sm" fontWeight={500}>
+						{children}
+					</Text>
+				</Button>
+				{isLink && <Icon as={BsArrowUpRight} boxSize={3} color="gray.500" />}
+			</Flex>
+		</Link>
 	);
 }
 
@@ -92,6 +106,10 @@ function SectionTitle({ children }) {
 			{children}
 		</Text>
 	);
+}
+
+function StatusIcon({ color }) {
+	return <Icon as={BsCircleFill} color={`${color}.500`} boxSize={2} />;
 }
 
 export default Navbar;

@@ -17,7 +17,7 @@ const fonts = {
 };
 
 export const config = {
-	initialColorMode: 'light',
+	initialColorMode: 'system',
 	useSystemColorMode: false,
 };
 
