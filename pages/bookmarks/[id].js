@@ -5,12 +5,11 @@ import { useRouter } from 'next/router';
 const bookmarkPage = () => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const router = useRouter();
-	console.log(router.query);
-	const { title } = router.query;
+	const { id } = router.query;
 
 	return (
 		<Flex>
-			<Text>{title}</Text>
+			<Text>{id}</Text>
 		</Flex>
 	);
 };
@@ -18,7 +17,7 @@ const bookmarkPage = () => {
 bookmarkPage.getLayout = function getLayout(page) {
 	return (
 		<Flex>
-			<BookmarkSidebar />
+			<BookmarkSidebar forceOpen={false} />
 			{page}
 		</Flex>
 	);

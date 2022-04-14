@@ -22,7 +22,7 @@ function Bookmarks() {
 Bookmarks.getLayout = function getLayout(page) {
 	return (
 		<Flex>
-			<BookmarkSidebar />
+			<BookmarkSidebar forceOpen={true} />
 			{page}
 		</Flex>
 	);

@@ -1,35 +1,63 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Shortcut from '../Shortcut';
 
-function SidebarLayout({ title, children }) {
+function SidebarLayout({ title, forceOpen, children }) {
 	const [toggle, useToggle] = useState('');
+	const toggleCallback = () =>
+		toggle == '' ? useToggle('none') : useToggle('');
+
+	useEffect(() => {
+		if (forceOpen) {
+			useToggle('');
+		}
+	}, [useToggle, forceOpen]);
+
+	if (!forceOpen)
+		return (
+			<Sidebar title={title} toggle={toggle} useToggle={useToggle}>
+				<Shortcut command="metaKey+b" callback={toggleCallback}>
+					{children}
+				</Shortcut>
+			</Sidebar>
+		);
 
 	return (
-		<Box
-			w="30%"
-			pl={5}
-			pt={8}
-			position="sticky"
-			alignSelf="flex-start"
-			top={0}
-			h="100vh"
-			overflow="scroll"
-			css={{ '&::-webkit-scrollbar': { display: 'none' } }}
-			display={toggle}
-		>
-			<Flex justify="space-between" align="middle">
-				<Text mb={8} pl={2} fontWeight="semibold">
-					{title}
-				</Text>
-
-				<Icon onClick={() => useToggle('none')} as={FaArrowLeft} />
-			</Flex>
-
+		<Sidebar title={title} toggle={toggle}>
 			{children}
-		</Box>
+		</Sidebar>
 	);
 }
+
+const Sidebar = ({ title, toggle, useToggle, children }) => (
+	<Box
+		w="30%"
+		pl={5}
+		pt={8}
+		position="sticky"
+		alignSelf="flex-start"
+		top={0}
+		h="100vh"
+		overflow="scroll"
+		css={{ '&::-webkit-scrollbar': { display: 'none' } }}
+		display={toggle}
+	>
+		<Flex justify="space-between" align="middle">
+			<Text mb={8} pl={2} fontWeight="semibold">
+				{title}
+			</Text>
+
+			{useToggle && (
+				<Icon onClick={() => useToggle('none')} as={FaArrowLeft} mr={5} />
+			)}
+		</Flex>
+
+		{children}
+	</Box>
+);
+
+
 
 export default SidebarLayout;

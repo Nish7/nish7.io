@@ -6,12 +6,7 @@ function BookmarkItem({ title, site, active }) {
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.100');
 
 	return (
-		<Link
-			href={`/bookmarks/${Math.random() * 10}?title=${title
-				.split(' ')
-				.join('-')}`}
-			passHref
-		>
+		<Link href={`/bookmarks/${title.split(' ').join('-')}`} passHref>
 			<Box
 				_hover={{ bg: bg, cursor: 'pointer' }}
 				borderRadius={8}

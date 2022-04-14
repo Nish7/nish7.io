@@ -8,13 +8,13 @@ const bookmarks_sample = [
 	{ title: 'Foo bar city', site: 'nish.org' },
 ];
 
-const BookmarkSidebar = ({ toggle }) => {
+const BookmarkSidebar = ({ forceOpen }) => {
 	const {
-		query: { title: id },
+		query: { id },
 	} = useRouter();
 
 	return (
-		<SidebarLayout title="Bookmarks" toggle={toggle}>
+		<SidebarLayout forceOpen={forceOpen} title="Bookmarks">
 			{bookmarks_sample.map(({ title, site }) => (
 				<BookmarkItem
 					active={id == title.split(' ').join('-')}
