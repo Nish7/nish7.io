@@ -1,6 +1,6 @@
-import Education from '@/components/Education';
-import FeaturePost from '@/components/FeaturePost';
-import Work from '@/components/Work';
+import Education from '@/components/home/Education';
+import FeaturePost from '@/components/home/FeaturePost';
+import Work from '@/components/home/Work';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 export default function Home() {

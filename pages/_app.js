@@ -10,6 +10,8 @@ import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-sans/700.css';
 
 function MyApp({ Component, pageProps }) {
+	const getLayout = Component.getLayout || ((page) => page);
+
 	return (
 		<ChakraProvider theme={theme}>
 			<Flex align="flex-start">
@@ -21,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 					top={0}
 				/>
 				<Flex w="85%" pr={5} minH="100vh" flexDirection="column">
-					<Component {...pageProps} />
+					{getLayout(<Component {...pageProps} />)}
 				</Flex>
 			</Flex>
 		</ChakraProvider>
