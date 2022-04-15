@@ -8,6 +8,7 @@ import {
 	BsGithub,
 	BsArrowUpRight,
 	BsTwitter,
+	BsLinkedin,
 } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
 import { RiGameFill } from 'react-icons/ri';
@@ -41,16 +42,16 @@ function Navbar({ ...rest }) {
 			{/* Projects */}
 			<Box mt={10}>
 				<SectionTitle>Recent Projects</SectionTitle>
-				<NavLink noActive icon={<StatusIcon color="red" />}>
+				<NavLink noActive icon={<StatusIcon color="yellow" />}>
 					B2C
 				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="blue" />}>
+				<NavLink noActive icon={<StatusIcon color="yellow" />}>
 					Humans of Surat
 				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="blue" />}>
+				<NavLink noActive icon={<StatusIcon color="yellow" />}>
 					TheTray
 				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="green" />}>
+				<NavLink noActive icon={<StatusIcon color="yellow" />}>
 					TodoKage
 				</NavLink>
 			</Box>
@@ -62,6 +63,9 @@ function Navbar({ ...rest }) {
 				</NavLink>
 				<NavLink noActive icon={<BsGithub />}>
 					Github
+				</NavLink>
+				<NavLink noActive icon={<BsLinkedin />}>
+					LinkedIn
 				</NavLink>
 			</Box>
 
@@ -79,23 +83,20 @@ function NavLink({ children, icon, noActive, isLink, href = '/coming-soon' }) {
 
 	return (
 		<Link href={href} passHref>
-			<Flex mb="3px" align="center" justify="space-between">
-				<Button
-					h="auto"
-					isFullWidth
-					leftIcon={icon}
-					justifyContent="flex-start"
-					variant={active ? 'solid' : 'ghost'}
-					px={3}
-					py={2}
-					_focus={{ boxShadow: 'none' }}
-				>
-					<Text fontSize="sm" fontWeight={500}>
-						{children}
-					</Text>
-				</Button>
-				{isLink && <Icon as={BsArrowUpRight} boxSize={3} color="gray.500" />}
-			</Flex>
+			<Button
+				h="auto"
+				isFullWidth
+				leftIcon={icon}
+				justifyContent="flex-start"
+				variant={active ? 'solid' : 'ghost'}
+				px={3}
+				py={2}
+				_focus={{ boxShadow: 'none' }}
+			>
+				<Text fontSize="sm" fontWeight={500}>
+					{children}
+				</Text>
+			</Button>
 		</Link>
 	);
 }
