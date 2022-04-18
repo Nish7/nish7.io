@@ -2,20 +2,20 @@
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-import Shortcut from '../Shortcut';
+import Shortcut from './Shortcut';
 
-function SidebarLayout({ title, forceOpen, children }) {
+function SidebarLayout({ title, shortcut = true, children }) {
 	const [toggle, useToggle] = useState('');
 	const toggleCallback = () =>
 		toggle == '' ? useToggle('none') : useToggle('');
 
 	useEffect(() => {
-		if (forceOpen) {
+		if (shortcut) {
 			useToggle('');
 		}
-	}, [useToggle, forceOpen]);
+	}, [useToggle, shortcut]);
 
-	if (!forceOpen)
+	if (!shortcut)
 		return (
 			<Sidebar title={title} toggle={toggle} useToggle={useToggle}>
 				<Shortcut command="metaKey+b" callback={toggleCallback}>
@@ -35,6 +35,7 @@ const Sidebar = ({ title, toggle, useToggle, children }) => (
 	<Box
 		w="30%"
 		pl={5}
+		pr={3}
 		pt={8}
 		position="sticky"
 		alignSelf="flex-start"

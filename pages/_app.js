@@ -1,6 +1,6 @@
 import theme from '../theme';
 import { ChakraProvider } from '@chakra-ui/provider';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 import { Flex } from '@chakra-ui/react';
 
 // Fonts
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
 					alignSelf="flex-start"
 					top={0}
 				/>
-				<Flex w="85%" pr={5} minH="100vh" flexDirection="column">
+				<Flex w="85%" minH="100vh" flexDirection="column">
 					{getLayout(<Component {...pageProps} />)}
 				</Flex>
 			</Flex>

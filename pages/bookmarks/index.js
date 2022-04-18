@@ -1,4 +1,4 @@
-import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
+import BookmarkSidebar from '@/components/Bookmark/BookmarkSidebar';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 
 function Bookmarks() {
@@ -22,7 +22,7 @@ function Bookmarks() {
 Bookmarks.getLayout = function getLayout(page) {
 	return (
 		<Flex>
-			<BookmarkSidebar forceOpen={true} />
+			<BookmarkSidebar />
 			{page}
 		</Flex>
 	);
