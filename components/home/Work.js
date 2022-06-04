@@ -1,6 +1,6 @@
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
-function Work() {
+function Work({ data }) {
 	return (
 		<Flex mt={20}>
 			<Text fontWeight="semibold" color="gray.400">
@@ -8,15 +8,26 @@ function Work() {
 			</Text>
 
 			<Box w="full" ml={10}>
-				<Job comp="Atishae Web Pvt" role="Intern Tester" dur="2019-19" />
-				<Job comp="4eversolutions" role="Intern Web Developer" dur="2018-18" />
-				<Job comp="NJ Indiavest" role="Intern Java Developer" dur="2017-17" />
+				{data.map((j) => (
+					<Job
+						key={j.id}
+						comp={j.name}
+						role={j.role}
+						start_date={j.start_date}
+						end_date={j.end_date}
+					/>
+				))}
 			</Box>
 		</Flex>
 	);
 }
 
-function Job({ comp, role, dur }) {
+function Job({ comp, role, start_date, end_date }) {
+	const start_year = new Date(start_date).getFullYear();
+	const end_year = new Date(end_date).getFullYear().toString().slice(2);
+
+	const dur = `${start_year}-${end_year}`;
+
 	return (
 		<Flex justify="space-between" align="center" mb={2}>
 			<Text whiteSpace="nowrap" mr={5}>

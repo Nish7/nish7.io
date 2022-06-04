@@ -6,7 +6,6 @@ import {
 	BsStack,
 	BsCircleFill,
 	BsGithub,
-	BsArrowUpRight,
 	BsTwitter,
 	BsLinkedin,
 } from 'react-icons/bs';
@@ -35,7 +34,7 @@ function Navbar({ ...rest }) {
 					Bookmarks
 				</NavLink>
 				<NavLink icon={<BsStack />}>Stack</NavLink>
-				<NavLink icon={<AiFillStar />}>Technologies</NavLink>
+				<NavLink icon={<AiFillStar />}>Gear</NavLink>
 				<NavLink icon={<RiGameFill />}>Misc</NavLink>
 			</Box>
 

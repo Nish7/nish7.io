@@ -1,5 +1,5 @@
 {
-  "name": "untld",
+  "name": "nishos",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,6 +12,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/ibm-plex-sans": "^4.5.1",
+    "@supabase/supabase-js": "^1.35.3",
     "axios": "^0.24.0",
     "framer-motion": "^5",
     "next": "12.0.7",
