@@ -1,6 +1,6 @@
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
-function Education() {
+function Education({ data }) {
 	return (
 		<Flex mt={14}>
 			<Text fontWeight="semibold" color="gray.400">
@@ -8,22 +8,25 @@ function Education() {
 			</Text>
 
 			<Box w="full" ml={10}>
-				<Study
-					title="B.Sc Computer Science - 3.86 GPA"
-					place="Ryerson University, Toronto"
-					dur="2021-25"
-				/>
-				<Study
-					title="IB Diploma Programme - 39/45"
-					place="Fountainhead School, Surat"
-					dur="2019-21"
-				/>
+				{data.map((s) => (
+					<Study
+						key={s.id}
+						title={s.degree}
+						place={s.place}
+						start_date={s.start_date}
+						end_date={s.end_date}
+					/>
+				))}
 			</Box>
 		</Flex>
 	);
 }
 
-function Study({ title, place, dur }) {
+function Study({ title, place, start_date, end_date }) {
+	const start_year = new Date(start_date).getFullYear();
+	const end_year = new Date(end_date).getFullYear().toString().slice(2);
+
+	const dur = `${start_year}-${end_year}`;
 	return (
 		<Flex justify="space-between" align="center" mb={2}>
 			<Text whiteSpace="nowrap" mr={5}>

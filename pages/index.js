@@ -2,8 +2,9 @@ import Education from '@/components/Home/Education';
 import FeaturePost from '@/components/Home/FeaturePost';
 import Work from '@/components/Home/Work';
 import { Box, Flex, Text } from '@chakra-ui/react';
+import { supabase } from 'lib/supabase';
 
-export default function Home() {
+export default function Home({ workData, educationData }) {
 	return (
 		<Box w="70%" py={8} mx="auto">
 			<Flex mb={14} align="center">
@@ -28,9 +29,21 @@ export default function Home() {
 
 			<FeaturePost />
 
-			<Work />
+			<Work data={workData} />
 
-			<Education />
+			<Education data={educationData} />
 		</Box>
 	);
+}
+
+export async function getStaticProps() {
+	let { data: workData } = await supabase.from('Work').select('*');
+	let { data: educationData } = await supabase.from('Education').select('*');
+
+	return {
+		props: {
+			workData,
+			educationData,
+		},
+	};
 }
