@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 	// TODO: Change the link in production
 	const {
 		data: { access_token },
-	} = await axios.get('http://localhost:3000/api/spotify/refresh');
+	} = await axios.get('http://nish7.xyz/api/spotify/refresh');
 
 	const { data } = await axios.get(
 		'https://api.spotify.com/v1/me/player/currently-playing',
