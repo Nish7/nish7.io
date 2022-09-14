@@ -1,6 +1,6 @@
 import theme from '../theme';
 import { ChakraProvider } from '@chakra-ui/provider';
-import Navbar from '@/components/Navbar/Navbar';
+import Navbar from '@/components/navbar/Navbar';
 import { Flex } from '@chakra-ui/react';
 
 // Fonts

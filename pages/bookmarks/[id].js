@@ -1,5 +1,5 @@
-import BookmarkSidebar from '@/components/Bookmark/BookmarkSidebar';
-import TagLabel from '@/components/Tag/TagLabel';
+import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
+import TagLabel from '@/components/tag/TagLabel';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 

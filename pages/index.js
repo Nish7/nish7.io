@@ -1,6 +1,6 @@
-import Education from '@/components/Home/Education';
-import FeaturePost from '@/components/Home/FeaturePost';
-import Work from '@/components/Home/Work';
+import Education from '@/components/home/Education';
+import FeaturePost from '@/components/home/FeaturePost';
+import Work from '@/components/home/Work';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { supabase } from 'lib/supabase';
 
