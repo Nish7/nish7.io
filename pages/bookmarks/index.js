@@ -1,5 +1,6 @@
-import BookmarkSidebar from '@/components/Bookmark/BookmarkSidebar';
+import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { supabase } from 'lib/supabase';
 
 function Bookmarks() {
 	const color = useColorModeValue('rgba(0,0,0,0.7)', 'rgba(255,255,255,0.5)');
@@ -20,12 +21,25 @@ function Bookmarks() {
 }
 
 Bookmarks.getLayout = function getLayout(page) {
+	const { props } = page;
+
 	return (
 		<Flex>
-			<BookmarkSidebar />
+			<BookmarkSidebar bookmarks={props.bookmarksData} />
 			{page}
 		</Flex>
 	);
 };
+
+export async function getStaticProps() {
+	let { data: bookmarksData } = await supabase.from('Bookmark').select('*');
+
+	return {
+		props: {
+			bookmarksData,
+		},
+	};
+}
+
 
 export default Bookmarks;

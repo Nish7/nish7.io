@@ -8,10 +8,10 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "components/*"
+        "./components/*"
       ],
       "@/pages/*": [
-        "pages/*"
+        "./pages/*"
       ]
     }
   },
