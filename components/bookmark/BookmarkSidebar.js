@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarLayout from '../Layouts/SidebarLayout';
+import SidebarLayout from '../layouts/SidebarLayout';
 import BookmarkItem from './BookmarkItem';
 import { useRouter } from 'next/router';
 
