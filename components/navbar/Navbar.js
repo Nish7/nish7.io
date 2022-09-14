@@ -12,7 +12,11 @@ import {
 import { FaPen } from 'react-icons/fa';
 import { RiGameFill } from 'react-icons/ri';
 import CurrentPlaying from './CurrentPlaying';
+<<<<<<< HEAD
 import ColorModeBtn from '../Btn/ColorModeBtn';
+=======
+import ColorModeBtn from '../btn/ColorModeBtn';
+>>>>>>> 40d3ed4dfd3827bad542bad61b4f236b87605c85
 
 function Navbar({ ...rest }) {
 	return (
