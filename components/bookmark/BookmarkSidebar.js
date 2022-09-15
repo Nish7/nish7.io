@@ -12,7 +12,7 @@ const BookmarkSidebar = ({ bookmarks = [] }) => {
 		<SidebarLayout title="Bookmarks">
 			{bookmarks.map(({ name, link, id: bookmarkId }) => (
 				<BookmarkItem
-					active={id == name.split(' ').join('-')}
+					active={id == name.toLowerCase().split(' ').join('-')}
 					title={name}
 					site={new URL(link).host}
 					key={bookmarkId}
