@@ -1,6 +1,6 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '../../components/tag/TagLabel';
-import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
+import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
@@ -42,10 +42,12 @@ const bookmarkPage = ({ bookmarksData }) => {
 				{description}
 			</Text>
 
-			<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
-				<Icon boxSize={3} as={FiLink} mr={1} />
-				<Text>Visit</Text>
-			</Button>
+			<Link style={{ textDecoration: 'none' }} href={link}>
+				<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
+					<Icon boxSize={3} as={FiLink} mr={1} />
+					<Text>Visit</Text>
+				</Button>
+			</Link>
 		</Box>
 	);
 };
