@@ -17,20 +17,9 @@ function FeaturePost() {
 				Featured Posts
 			</Text>
 			<Flex justify="space-evenly">
-				<BlogBox
-					title="Everything I Know About Style Guides, Design Systems"
-					date="21/01/2021"
-				/>
-
-				<BlogBox
-					title="Rust Is The Future of JavaScript Infrastructure"
-					date="12/12/2021"
-				/>
-
-				<BlogBox
-					title="Past, Present, and Future of React State Management"
-					date="22/02/2021"
-				/>
+				<BlogBox title="Writing In Progess..." date="Coming Soon" />
+				<BlogBox title="Writing In Progess..." date="Coming Soon" />
+				<BlogBox title="Writing In Progess..." date="Coming Soon" />
 			</Flex>
 		</>
 	);
@@ -58,7 +47,7 @@ function BlogBox({ title, date }) {
 				{title}
 			</Text>
 
-			<Flex mt={5}>
+			<Flex mt={5} alignItems="center">
 				<Icon as={MdDateRange} mr={1} />
 				<Text fontSize="sm">{date}</Text>
 			</Flex>

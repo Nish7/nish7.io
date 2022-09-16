@@ -24,7 +24,9 @@ function Work({ data }) {
 
 function Job({ comp, role, start_date, end_date }) {
 	const start_year = new Date(start_date).getFullYear();
-	const end_year = new Date(end_date).getFullYear().toString().slice(2);
+	const end_year = end_date
+		? new Date(end_date).getFullYear().toString().slice(2)
+		: 'Present';
 
 	const dur = `${start_year}-${end_year}`;
 

@@ -21,8 +21,9 @@ export default function Home({ workData, educationData }) {
 					<Text fontWeight="semibold">Front-end developer</Text>
 					<Text mt={7} w="80%" letterSpacing={0.5}>
 						I am a Front End Developer and UI Designer with a bit of backend
-						experience, primarily working with node. I am also an undergraduate
-						computer science student at Ryerson University, Toronto, CA.
+						experience, primarily working with Java(type)script. I am also an
+						undergraduate computer science student at Toronto Metropolitan
+						University, Toronto.
 					</Text>
 				</Box>
 			</Flex>
@@ -37,7 +38,11 @@ export default function Home({ workData, educationData }) {
 }
 
 export async function getStaticProps() {
-	let { data: workData } = await supabase.from('Work').select('*');
+	let { data: workData } = await supabase
+		.from('Work')
+		.select('*')
+		.order('start_date', { ascending: false });
+
 	let { data: educationData } = await supabase.from('Education').select('*');
 
 	return {

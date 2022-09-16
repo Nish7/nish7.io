@@ -1,12 +1,12 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 function comingsoon() {
 	return (
-		<Box>
-			<Text fontWeight="bold" fontSize="6xl" textAlign="center">
+		<Flex h="100vh" justifyContent="center" alignItems="center">
+			<Text fontWeight="bold" fontSize="7xl">
 				Coming Soon...
 			</Text>
-		</Box>
+		</Flex>
 	);
 }
 

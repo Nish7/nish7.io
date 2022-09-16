@@ -29,7 +29,9 @@ function Navbar({ ...rest }) {
 
 			{/* Me */}
 			<Box mt={10}>
-				<SectionTitle>Me</SectionTitle>
+				<SectionTitle>
+					<Link href="/me">Me</Link>
+				</SectionTitle>
 
 				<NavLink href="/bookmarks" icon={<AiFillBook />}>
 					Bookmarks
@@ -41,7 +43,9 @@ function Navbar({ ...rest }) {
 
 			{/* Projects */}
 			<Box mt={10}>
-				<SectionTitle>Recent Projects</SectionTitle>
+				<SectionTitle>
+					<Link href="/projects">Recent Projects</Link>
+				</SectionTitle>
 				<NavLink noActive icon={<StatusIcon color="yellow" />}>
 					B2C
 				</NavLink>
@@ -58,13 +62,21 @@ function Navbar({ ...rest }) {
 
 			<Box mt={10}>
 				<SectionTitle>Social</SectionTitle>
-				<NavLink noActive icon={<BsTwitter />} isLink>
+				<NavLink
+					noActive
+					icon={<BsTwitter />}
+					href="https://twitter.com/nishilkapadia"
+				>
 					Twitter
 				</NavLink>
-				<NavLink noActive icon={<BsGithub />}>
+				<NavLink noActive icon={<BsGithub />} href="https://github.com/Nish7">
 					Github
 				</NavLink>
-				<NavLink noActive icon={<BsLinkedin />}>
+				<NavLink
+					noActive
+					icon={<BsLinkedin />}
+					href="https://www.linkedin.com/in/nishil-kapadia/"
+				>
 					LinkedIn
 				</NavLink>
 			</Box>
@@ -82,7 +94,7 @@ function NavLink({ children, icon, noActive, isLink, href = '/coming-soon' }) {
 	const active = noActive || href == '/coming-soon' ? false : pathname == href;
 
 	return (
-		<Link href={href} passHref>
+		<Link href={href} passHref target="_blank">
 			<Button
 				h="auto"
 				isFullWidth
