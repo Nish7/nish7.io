@@ -13,9 +13,16 @@ import { FaPen } from 'react-icons/fa';
 import { RiGameFill } from 'react-icons/ri';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
-
+import useSWR from 'swr';
+import fetcher from 'lib/fetcher';
+import { tags_colors } from 'lib/enums';
 
 function Navbar({ ...rest }) {
+	const { data: projectsData } = useSWR(
+		'http://localhost:3000/api/github/projects',
+		fetcher
+	);
+
 	return (
 		<Flex {...rest} p={3} flexDir="column">
 			<Text fontWeight="semibold" pl={3} justifySelf="flex-start"></Text>
@@ -46,18 +53,20 @@ function Navbar({ ...rest }) {
 				<SectionTitle>
 					<Link href="/projects">Recent Projects</Link>
 				</SectionTitle>
-				<NavLink noActive icon={<StatusIcon color="yellow" />}>
-					B2C
-				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="yellow" />}>
-					Humans of Surat
-				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="yellow" />}>
-					TheTray
-				</NavLink>
-				<NavLink noActive icon={<StatusIcon color="yellow" />}>
-					TodoKage
-				</NavLink>
+
+				{projectsData &&
+					projectsData
+						.map((p) => (
+							<NavLink
+								key={p.name}
+								noActive
+								href={'/projects/' + p.name.toLowerCase().split(' ').join('-')}
+								icon={<StatusIcon color={tags_colors[p.language]} />}
+							>
+								{p.name}
+							</NavLink>
+						))
+						.slice(0, 4)}
 			</Box>
 
 			<Box mt={10}>
@@ -121,8 +130,10 @@ function SectionTitle({ children }) {
 	);
 }
 
-function StatusIcon({ color }) {
-	return <Icon as={BsCircleFill} color={`${color}.500`} boxSize={2} />;
+export function StatusIcon({ color, ...rest }) {
+	return (
+		<Icon as={BsCircleFill} color={`${color}.500`} boxSize={2} {...rest} />
+	);
 }
-
+2;
 export default Navbar;

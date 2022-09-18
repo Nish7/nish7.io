@@ -1,6 +1,6 @@
 import ProjectSidebar from '@/components/project/ProjectSidebar';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
-import { supabase } from 'lib/supabase';
+import axios from 'axios';
 
 function Projects() {
 	const color = useColorModeValue('rgba(0,0,0,0.7)', 'rgba(255,255,255,0.5)');
@@ -32,7 +32,9 @@ Projects.getLayout = function getLayout(page) {
 };
 
 export async function getStaticProps() {
-	let { data: projectsData } = await supabase.from('Project').select('*');
+	let { data: projectsData } = await axios.get(
+		'http://localhost:3000/api/github/projects'
+	);
 
 	return {
 		props: {

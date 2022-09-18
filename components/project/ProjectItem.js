@@ -1,8 +1,9 @@
 import { Box, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import { FiLink } from 'react-icons/fi';
+import { StatusIcon } from '../navbar/Navbar';
+import { tags_colors } from 'lib/enums';
 
-function ProjectItem({ title, tags, active }) {
+function ProjectItem({ title, language, active }) {
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.100');
 
 	return (
@@ -20,8 +21,8 @@ function ProjectItem({ title, tags, active }) {
 					{title}
 				</Text>
 				<Text mt={1} fontSize="sm" color="gray.600">
-					<Icon boxSize={3} as={FiLink} mr={2} />
-					{tags}
+					<StatusIcon color={tags_colors[language]} mr={1} />
+					{language}
 				</Text>
 			</Box>
 		</Link>

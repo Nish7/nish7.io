@@ -4,12 +4,7 @@ import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
-
-const tagColors = {
-	Website: 'red',
-	Portfolio: 'blue',
-	Reading: 'purple',
-};
+import { tags_colors } from 'lib/enums';
 
 const bookmarkPage = ({ bookmarksData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -28,7 +23,7 @@ const bookmarkPage = ({ bookmarksData }) => {
 
 	return (
 		<Box w="70%" py={8} mx="auto" h="auto" px={10}>
-			<TagLabel color={tagColors?.[tag]}>{tag}</TagLabel>
+			<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
 
 			<Text fontWeight="bold" fontSize="2xl">
 				{name.split('-').join(' ')}

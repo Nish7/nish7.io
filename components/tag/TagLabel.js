@@ -23,6 +23,16 @@ const TagLabel = ({ color = 'gray', children }) => {
 			borderColor: 'rgba(140, 0, 255,0.1)',
 			color: 'purple.500',
 		},
+		green: {
+			bg: 'rgba(63, 255, 85,0.2)',
+			borderColor: 'rgba(63, 255, 85,0.1)',
+			color: 'green.500',
+		},
+		yellow: {
+			bg: 'rgb(243, 255, 76, 0.2)',
+			borderColor: 'rgb(243, 255, 76,0.1)',
+			color: 'yellow.500',
+		},
 	};
 
 	return (

@@ -2,14 +2,9 @@ import ProjectSidebar from '@/components/project/ProjectSidebar';
 import TagLabel from '../../components/tag/TagLabel';
 import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
-
-const tagColors = {
-	frontend: 'red',
-	backend: 'blue',
-	fullStack: 'purple',
-};
+import axios from 'axios';
+import { tags_colors } from 'lib/enums';
 
 const ProjectPage = ({ projectsData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -17,27 +12,29 @@ const ProjectPage = ({ projectsData }) => {
 	const { id } = router.query;
 
 	const {
-		created_at,
 		name,
+		url,
 		description,
-		tags,
-		languages,
-		website_link,
-		github_link,
+		created_at,
+		language,
+		topics,
+		homepage: homepage_link,
 	} = projectsData.find(
 		(b) => b.name.toLowerCase().split(' ').join('-').trim() === id
 	);
 
+	console.log(homepage_link);
+
 	return (
 		<Box w="70%" py={8} mx="auto" h="auto" px={10}>
-			<TagLabel color={tagColors?.[tags]}>{tags}</TagLabel>
+			<TagLabel color={tags_colors?.[language]}>{language}</TagLabel>
 
 			<Text fontWeight="bold" fontSize="2xl">
 				{name.split('-').join(' ')}
 			</Text>
 
 			<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
-				{languages.split(',').map((l) => (
+				{topics.map((l) => (
 					<TagLabel key={l}>{l}</TagLabel>
 				))}
 			</Text>
@@ -48,7 +45,7 @@ const ProjectPage = ({ projectsData }) => {
 
 			<Link
 				style={{ textDecoration: 'none' }}
-				href={website_link}
+				href={'https://' + homepage_link}
 				target="_blank"
 			>
 				<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
@@ -72,7 +69,11 @@ ProjectPage.getLayout = function getLayout(page) {
 };
 
 export async function getStaticPaths() {
-	let { data: projectsData } = await supabase.from('Project').select('*');
+	const { data: projectsData } = await axios.get(
+		'http://localhost:3000/api/github/projects'
+	);
+
+	console.log(projectsData);
 
 	const paths = projectsData.map((p) => ({
 		params: { id: p.name.toLowerCase().split(' ').join('-').trim() },
@@ -82,7 +83,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-	let { data: projectsData } = await supabase.from('Project').select('*');
+	// TODO: Change in prod
+	const { data: projectsData } = await axios.get(
+		'http://localhost:3000/api/github/projects'
+	);
 
 	return {
 		props: {
