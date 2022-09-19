@@ -3,8 +3,8 @@ import TagLabel from '../../components/tag/TagLabel';
 import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
-import axios from 'axios';
-import { tags_colors } from 'lib/enums';
+import { tags_colors } from '../../lib/enums';
+import getProjects from '../../lib/getProjects';
 
 const ProjectPage = ({ projectsData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -69,9 +69,7 @@ ProjectPage.getLayout = function getLayout(page) {
 };
 
 export async function getStaticPaths() {
-	const { data: projectsData } = await axios.get(
-		'https://nish7.xyz/api/github/projects'
-	);
+	const projectsData = await getProjects();
 
 	console.log(projectsData);
 
@@ -83,10 +81,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-	// TODO: Change in prod
-	const { data: projectsData } = await axios.get(
-		'https://nish7.xyz/api/github/projects'
-	);
+	const projectsData = await getProjects();
 
 	return {
 		props: {

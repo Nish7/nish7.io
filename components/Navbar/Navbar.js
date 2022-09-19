@@ -13,15 +13,16 @@ import { FaPen } from 'react-icons/fa';
 import { RiGameFill } from 'react-icons/ri';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
-import useSWR from 'swr';
-import fetcher from 'lib/fetcher';
-import { tags_colors } from 'lib/enums';
+import { tags_colors } from '../../lib/enums';
+import getProjects from '../../lib/getProjects';
+import { useState, useEffect } from 'react';
 
 function Navbar({ ...rest }) {
-	const { data: projectsData } = useSWR(
-		'https://nish7.xyz/api/github/projects',
-		fetcher
-	);
+	const [projectsData, setProjectData] = useState();
+
+	useEffect(() => {
+		getProjects().then((data) => setProjectData(data));
+	}, []);
 
 	return (
 		<Flex {...rest} p={3} flexDir="column">

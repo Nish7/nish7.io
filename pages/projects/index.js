@@ -1,6 +1,6 @@
 import ProjectSidebar from '@/components/project/ProjectSidebar';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
-import axios from 'axios';
+import getProjects from '../../lib/getProjects';
 
 function Projects() {
 	const color = useColorModeValue('rgba(0,0,0,0.7)', 'rgba(255,255,255,0.5)');
@@ -32,9 +32,7 @@ Projects.getLayout = function getLayout(page) {
 };
 
 export async function getStaticProps() {
-	let { data: projectsData } = await axios.get(
-		'https://nish7.xyz/api/github/projects'
-	);
+	let projectsData = await getProjects();
 
 	return {
 		props: {
