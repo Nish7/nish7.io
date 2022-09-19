@@ -70,7 +70,7 @@ ProjectPage.getLayout = function getLayout(page) {
 
 export async function getStaticPaths() {
 	const { data: projectsData } = await axios.get(
-		'http://localhost:3000/api/github/projects'
+		'https://nish7.xyz/api/github/projects'
 	);
 
 	console.log(projectsData);
@@ -85,7 +85,7 @@ export async function getStaticPaths() {
 export async function getStaticProps() {
 	// TODO: Change in prod
 	const { data: projectsData } = await axios.get(
-		'http://localhost:3000/api/github/projects'
+		'https://nish7.xyz/api/github/projects'
 	);
 
 	return {

@@ -33,7 +33,7 @@ Projects.getLayout = function getLayout(page) {
 
 export async function getStaticProps() {
 	let { data: projectsData } = await axios.get(
-		'http://localhost:3000/api/github/projects'
+		'https://nish7.xyz/api/github/projects'
 	);
 
 	return {

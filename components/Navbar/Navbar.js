@@ -19,7 +19,7 @@ import { tags_colors } from 'lib/enums';
 
 function Navbar({ ...rest }) {
 	const { data: projectsData } = useSWR(
-		'http://localhost:3000/api/github/projects',
+		'https://nish7.xyz/api/github/projects',
 		fetcher
 	);
 
