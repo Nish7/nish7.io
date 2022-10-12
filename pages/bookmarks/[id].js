@@ -65,7 +65,7 @@ export async function getStaticPaths() {
 		params: { id: p.name.toLowerCase().split(' ').join('-').trim() },
 	}));
 
-	return { paths, fallback: false };
+	return { paths, fallback: 'blocking' };
 }
 
 export async function getStaticProps() {
@@ -75,6 +75,7 @@ export async function getStaticProps() {
 		props: {
 			bookmarksData,
 		},
+		revalidate: 60,
 	};
 }
 
