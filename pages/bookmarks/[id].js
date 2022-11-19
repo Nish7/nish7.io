@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from 'lib/enums';
+import HeadMeta from '@/components/HeadTag/HeadMeta';
 
 const bookmarkPage = ({ bookmarksData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -22,28 +23,31 @@ const bookmarkPage = ({ bookmarksData }) => {
 	);
 
 	return (
-		<Box w="70%" py={8} mx="auto" h="auto" px={10}>
-			<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
+		<>
+			<HeadMeta title={name} />
+			<Box w="70%" py={8} mx="auto" h="auto" px={10}>
+				<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
 
-			<Text fontWeight="bold" fontSize="2xl">
-				{name.split('-').join(' ')}
-			</Text>
+				<Text fontWeight="bold" fontSize="2xl">
+					{name.split('-').join(' ')}
+				</Text>
 
-			<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
-				<Icon boxSize={3} as={FiLink} mr={1} /> {new URL(link).host}
-			</Text>
+				<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
+					<Icon boxSize={3} as={FiLink} mr={1} /> {new URL(link).host}
+				</Text>
 
-			<Text fontWeight="light" fontStyle="italic" color="grey" fontSize="md">
-				{description}
-			</Text>
+				<Text fontWeight="light" fontStyle="italic" color="grey" fontSize="md">
+					{description}
+				</Text>
 
-			<Link style={{ textDecoration: 'none' }} href={link} target="_blank">
-				<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
-					<Icon boxSize={3} as={FiLink} mr={1} />
-					<Text>Visit</Text>
-				</Button>
-			</Link>
-		</Box>
+				<Link style={{ textDecoration: 'none' }} href={link} target="_blank">
+					<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
+						<Icon boxSize={3} as={FiLink} mr={1} />
+						<Text>Visit</Text>
+					</Button>
+				</Link>
+			</Box>
+		</>
 	);
 };
 

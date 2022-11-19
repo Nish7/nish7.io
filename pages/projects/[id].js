@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
+import HeadMeta from '@/components/HeadTag/HeadMeta';
 
 const ProjectPage = ({ projectsData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -23,37 +24,38 @@ const ProjectPage = ({ projectsData }) => {
 		(b) => b.name.toLowerCase().split(' ').join('-').trim() === id
 	);
 
-	console.log(homepage_link);
-
 	return (
-		<Box w="70%" py={8} mx="auto" h="auto" px={10}>
-			<TagLabel color={tags_colors?.[language]}>{language}</TagLabel>
+		<>
+			<HeadMeta title={name} />
+			<Box w="70%" py={8} mx="auto" h="auto" px={10}>
+				<TagLabel color={tags_colors?.[language]}>{language}</TagLabel>
 
-			<Text fontWeight="bold" fontSize="2xl">
-				{name.split('-').join(' ')}
-			</Text>
+				<Text fontWeight="bold" fontSize="2xl">
+					{name.split('-').join(' ')}
+				</Text>
 
-			<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
-				{topics.map((l) => (
-					<TagLabel key={l}>{l}</TagLabel>
-				))}
-			</Text>
+				<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
+					{topics.map((l) => (
+						<TagLabel key={l}>{l}</TagLabel>
+					))}
+				</Text>
 
-			<Text fontWeight="light" fontStyle="italic" color="grey" fontSize="md">
-				{description}
-			</Text>
+				<Text fontWeight="light" fontStyle="italic" color="grey" fontSize="md">
+					{description}
+				</Text>
 
-			<Link
-				style={{ textDecoration: 'none' }}
-				href={'https://' + homepage_link}
-				target="_blank"
-			>
-				<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
-					<Icon boxSize={3} as={FiLink} mr={1} />
-					<Text>Visit</Text>
-				</Button>
-			</Link>
-		</Box>
+				<Link
+					style={{ textDecoration: 'none' }}
+					href={homepage_link ?? '/'}
+					target="_blank"
+				>
+					<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
+						<Icon boxSize={3} as={FiLink} mr={1} />
+						<Text>Visit</Text>
+					</Button>
+				</Link>
+			</Box>
+		</>
 	);
 };
 
