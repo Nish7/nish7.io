@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<ChakraProvider theme={theme}>
-			<Flex align="flex-start">
+			<Flex>
 				<Navbar
 					w="15%"
 					h="100vh"
@@ -22,7 +22,12 @@ function MyApp({ Component, pageProps }) {
 					alignSelf="flex-start"
 					top={0}
 				/>
-				<Flex w="85%" minH="100vh" flexDirection="column">
+				<Flex
+					w="85%"
+					minH="100vh"
+					flexDirection="column"
+					justifyContent="center"
+				>
 					{getLayout(<Component {...pageProps} />)}
 				</Flex>
 			</Flex>
