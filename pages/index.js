@@ -21,12 +21,12 @@ export default function Home({ workData, educationData }) {
 						>
 							Nishil Kapadia
 						</Text>
-						<Text fontWeight="semibold">Front-end developer</Text>
+						<Text fontWeight="semibold">Software Developer</Text>
 						<Text mt={7} w="80%" letterSpacing={0.5}>
-							I am a Front End Developer with a bit of backend experience,
-							primarily working with Java(Type)Script. I am also an
-							undergraduate computer science student at Toronto Metropolitan
-							University, Toronto.
+							I am a Junior Software Developer with a bit of front-end and
+							back-end experience, primarily working with Java(Type)Script. I am
+							also an undergraduate computer science student at Toronto
+							Metropolitan University, Toronto.
 						</Text>
 					</Box>
 				</Flex>
@@ -54,5 +54,6 @@ export async function getStaticProps() {
 			workData,
 			educationData,
 		},
+		revalidate: 60,
 	};
 }
