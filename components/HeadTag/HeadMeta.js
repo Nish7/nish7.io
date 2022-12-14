@@ -5,6 +5,11 @@ function HeadMeta({ title }) {
 	return (
 		<Head>
 			<title>{title}</title>
+			<meta
+				name="description"
+				content="Software developer and CS undergrad, living in Toronto."
+			/>
+
 			{/*  Facebook Open Graph */}
 			<meta property="og:locale" content="en_US" />
 			<meta property="og:site_name" content="nish7.io" />
