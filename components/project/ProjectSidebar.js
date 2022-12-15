@@ -10,12 +10,12 @@ const ProjectSidebar = ({ projects = [] }) => {
 
 	return (
 		<SidebarLayout title="Projects">
-			{projects.map(({ name, language, id: projectId }) => (
+			{projects.map(({ name, language, id: projectId }, idx) => (
 				<ProjectItem
 					active={id == name.toLowerCase().split(' ').join('-')}
 					title={name}
 					language={language}
-					key={projectId}
+					key={idx}
 				/>
 			))}
 		</SidebarLayout>

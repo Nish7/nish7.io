@@ -1,7 +1,7 @@
 import { Box, Button, Text, Icon, Flex } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { AiFillHome, AiFillBook, AiFillStar } from 'react-icons/ai';
+import { AiFillHome, AiFillBook, AiFillStar, AiFillFile } from 'react-icons/ai';
 import {
 	BsStack,
 	BsCircleFill,
@@ -88,6 +88,13 @@ function Navbar({ ...rest }) {
 					href="https://www.linkedin.com/in/nishil-kapadia/"
 				>
 					LinkedIn
+				</NavLink>
+				<NavLink
+					noActive
+					icon={<AiFillFile />}
+					href="https://drive.google.com/file/d/1QC6G8npqJJXqlJGD1O9LsytvMdtuxtUQ/view?usp=sharing"
+				>
+					Resume
 				</NavLink>
 			</Box>
 
