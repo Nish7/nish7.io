@@ -8,7 +8,7 @@ import { supabase } from 'lib/supabase';
 export default function Home({ workData, educationData }) {
 	return (
 		<>
-			<HeadMeta title="Nishil Kapadia" />
+			<HeadMeta title="Nishil Kapadia | Home" />
 			<Box w="70%" py={8} mx="auto">
 				<Flex mb={14} align="center">
 					<Box>
@@ -23,10 +23,9 @@ export default function Home({ workData, educationData }) {
 						</Text>
 						<Text fontWeight="semibold">Software Developer</Text>
 						<Text mt={7} w="80%" letterSpacing={0.5}>
-							I am a Junior Software Developer with a bit of front-end and
-							back-end experience, primarily working with Java(Type)Script. I am
-							also an undergraduate computer science student at Toronto
-							Metropolitan University, Toronto.
+							Software Developer with a full-stack experience, primarily working
+							with Java(Type)Script. I am also an undergraduate computer science
+							student at Toronto Metropolitan University, Toronto.
 						</Text>
 					</Box>
 				</Flex>
