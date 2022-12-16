@@ -78,8 +78,6 @@ ProjectPage.getLayout = function getLayout(page) {
 export async function getStaticPaths() {
 	const projectsData = await getProjects();
 
-	console.log(projectsData);
-
 	const paths = projectsData.map((p) => ({
 		params: { id: p.name.toLowerCase().split(' ').join('-').trim() },
 	}));
