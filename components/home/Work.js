@@ -23,12 +23,18 @@ function Work({ data }) {
 }
 
 function Job({ comp, role, start_date, end_date }) {
-	const start_year = new Date(start_date).getFullYear();
-	const end_year = end_date
-		? new Date(end_date).getFullYear().toString().slice(2)
-		: 'Present';
+	const start = new Date(start_date);
+	const end = new Date(end_date);
 
-	const dur = `${start_year}-${end_year}`;
+	start.setMonth(start.getMonth() + 1);
+	end.setMonth(end.getMonth() + 1);
+
+	const start_month = start.toLocaleString([], { month: 'short' });
+	const end_month = end.toLocaleString([], { month: 'short' });
+
+	const dur = `${start_month} ${start.getFullYear()} -  ${
+		end_date ? end_month + ' ' + end.getFullYear() : 'Present'
+	}`;
 
 	return (
 		<Flex justify="space-between" align="center" mb={2}>
