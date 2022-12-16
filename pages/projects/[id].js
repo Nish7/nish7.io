@@ -14,7 +14,7 @@ const ProjectPage = ({ projectsData }) => {
 
 	const {
 		name,
-		url,
+		html_url,
 		description,
 		created_at,
 		language,
@@ -30,9 +30,14 @@ const ProjectPage = ({ projectsData }) => {
 			<Box w="70%" py={8} mx="auto" h="auto" px={10}>
 				<TagLabel color={tags_colors?.[language]}>{language}</TagLabel>
 
-				<Text fontWeight="bold" fontSize="2xl">
-					{name.split('-').join(' ')}
-				</Text>
+				<Link
+					style={{ textDecoration: 'none' }}
+					href={homepage_link?.length != 0 ? homepage_link : '#'}
+				>
+					<Text fontWeight="bold" fontSize="2xl" _hover={{ color: 'blue.300' }}>
+						{name.split('-').join(' ')}
+					</Text>
+				</Link>
 
 				<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
 					{topics.map((l) => (
@@ -46,12 +51,12 @@ const ProjectPage = ({ projectsData }) => {
 
 				<Link
 					style={{ textDecoration: 'none' }}
-					href={homepage_link ?? '/'}
 					target="_blank"
+					href={html_url}
 				>
 					<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
 						<Icon boxSize={3} as={FiLink} mr={1} />
-						<Text>Visit</Text>
+						<Text>Github</Text>
 					</Button>
 				</Link>
 			</Box>
