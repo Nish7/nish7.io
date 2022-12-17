@@ -2,12 +2,12 @@ import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
 function Work({ data }) {
 	return (
-		<Flex mt={20}>
-			<Text fontWeight="semibold" color="gray.400">
+		<Flex mt={20} flexDir={['column', 'column', 'row']}>
+			<Text fontWeight="semibold" color="gray.400" mb={1}>
 				Work
 			</Text>
 
-			<Box w="full" ml={10}>
+			<Box w="full" ml={[0, 0, 10]}>
 				{data.map((j) => (
 					<Job
 						key={j.id}
@@ -43,8 +43,12 @@ function Job({ comp, role, start_date, end_date }) {
 			</Text>
 			<Divider variant="dashed" borderColor="gray.400" />
 
-			<Flex ml={5}>
-				<Text mr={5} whiteSpace="nowrap">
+			<Flex
+				ml={5}
+				flexDir={['column', 'column', 'row']}
+				alignItems={'flex-end'}
+			>
+				<Text mr={[0, 0, 5]} whiteSpace="nowrap">
 					{role}
 				</Text>
 				<Text color="gray.600" whiteSpace="nowrap">

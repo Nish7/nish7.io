@@ -17,7 +17,7 @@ import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
 import { useState, useEffect } from 'react';
 
-function Navbar({ ...rest }) {
+function Navbar() {
 	const [projectsData, setProjectData] = useState();
 
 	useEffect(() => {
@@ -25,8 +25,17 @@ function Navbar({ ...rest }) {
 	}, []);
 
 	return (
-		<Flex {...rest} p={3} flexDir="column">
-			<Text fontWeight="semibold" pl={3} justifySelf="flex-start"></Text>
+		<Flex
+			display={['none', 'none', 'flex']}
+			w="15%"
+			h="100vh"
+			position="sticky"
+			alignSelf="flex-start"
+			top={0}
+			p={3}
+			flexDir="column"
+		>
+			{/* <Text fontWeight="semibold" pl={3} justifySelf="flex-start"></Text> */}
 
 			<Box mt={5}>
 				<NavLink href="/" icon={<AiFillHome />}>
