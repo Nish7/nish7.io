@@ -1,4 +1,4 @@
-import { Box, Button, Text, Icon, Flex } from '@chakra-ui/react';
+import { Box, Button, Text, Icon, Flex, useMediaQuery } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiFillHome, AiFillBook, AiFillStar, AiFillFile } from 'react-icons/ai';
@@ -17,7 +17,8 @@ import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
 import { useState, useEffect } from 'react';
 
-function Navbar() {
+function Navbar({ isNavOpen }) {
+	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 	const [projectsData, setProjectData] = useState();
 
 	useEffect(() => {
@@ -26,8 +27,12 @@ function Navbar() {
 
 	return (
 		<Flex
-			display={['none', 'none', 'flex']}
-			w="15%"
+			display={{
+				base: isNavOpen ? 'flex' : 'none',
+				md: 'flex',
+				lg: 'flex',
+			}}
+			w={['100%', '100%', '15%']}
 			h="100vh"
 			position="sticky"
 			alignSelf="flex-start"
