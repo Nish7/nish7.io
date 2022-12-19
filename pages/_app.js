@@ -1,57 +1,65 @@
-import theme from '../theme';
-import { ChakraProvider } from '@chakra-ui/provider';
-import Navbar from '../components/navbar/Navbar';
-import { Flex, Icon, useMediaQuery } from '@chakra-ui/react';
-
 // Fonts
 import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/500.css';
 import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-sans/700.css';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+
+import { useContext, useEffect } from 'react';
+import { Flex, useMediaQuery } from '@chakra-ui/react';
+
+import Navbar from '../components/navbar/Navbar';
+import Providers from '@/components/providers/Providers';
+import { GlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
 
 function MyApp({ Component, pageProps }) {
-	const getLayout = Component.getLayout || ((page) => page);
 	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
-	const [isNavOpen, setNav] = useState(false);
+	const getLayout = Component.getLayout || ((page) => page);
+
+	return (
+		<Providers>
+			<Flex>
+				<Navbar />
+
+				<RenderPageComponent
+					isLargerThan800={isLargerThan800}
+					Component={Component}
+					getLayout={getLayout}
+					pageProps={pageProps}
+				/>
+			</Flex>
+		</Providers>
+	);
+}
+
+function RenderPageComponent({
+	isLargerThan800,
+	Component,
+	getLayout,
+	pageProps,
+}) {
+	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
 
 	useEffect(() => {
 		if (isLargerThan800) {
-			setNav(false);
+			setIsOpen(false);
 		}
-	}, [isLargerThan800]);
+	}, [isLargerThan800, setIsOpen]);
 
 	return (
-		<ChakraProvider theme={theme}>
-			<Flex>
-				<Navbar isNavOpen={isNavOpen} />
-
-				<Icon
-					display={['inline', 'inline', 'none']}
-					position={'absolute'}
-					top="5"
-					onClick={() => setNav(!isNavOpen)}
-					left="5"
-					as={AiOutlineMenu}
-				/>
-
-				<Flex
-					display={{
-						base: !isNavOpen ? 'flex' : 'none',
-						md: 'flex',
-						lg: 'flex',
-					}}
-					w={['100%', '100%', '85%']}
-					minH="100vh"
-					flexDirection="column"
-					justifyContent="center"
-				>
-					{getLayout(<Component {...pageProps} />)}
-				</Flex>
-			</Flex>
-		</ChakraProvider>
+		<Flex
+			display={{
+				base: !isOpen ? 'flex' : 'none',
+				md: 'flex',
+				lg: 'flex',
+			}}
+			w={['100%', '100%', '85%']}
+			minH="100vh"
+			flexDirection="column"
+			justifyContent="center"
+		>
+			{getLayout(<Component {...pageProps} />)}
+		</Flex>
 	);
 }
 
