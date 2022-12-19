@@ -10,7 +10,7 @@ export default function Home({ workData, educationData }) {
 		<>
 			<HeadMeta title="Nishil Kapadia | Home" />
 
-			<Box w={['90%', '95%', '70%']} py={8} mx="auto" my={[16, 16, 0]}>
+			<Box w={['90%', '90%', '70%']} py={8} mx="auto" my={[16, 16, 0]}>
 				<Flex mb={14} align="center">
 					<Box>
 						<Text

@@ -1,4 +1,4 @@
-import { Box, Button, Text, Icon, Flex, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, Text, Icon, Flex } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiFillHome, AiFillBook, AiFillStar, AiFillFile } from 'react-icons/ai';
@@ -15,10 +15,13 @@ import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
 import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { CloseButton } from '@chakra-ui/react';
 
-function Navbar({ isNavOpen }) {
-	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+function Navbar() {
+	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
 	const [projectsData, setProjectData] = useState();
 
 	useEffect(() => {
@@ -26,107 +29,122 @@ function Navbar({ isNavOpen }) {
 	}, []);
 
 	return (
-		<Flex
-			display={{
-				base: isNavOpen ? 'flex' : 'none',
-				md: 'flex',
-				lg: 'flex',
-			}}
-			w={['100%', '100%', '15%']}
-			h="100vh"
-			position="sticky"
-			alignSelf="flex-start"
-			top={0}
-			p={3}
-			flexDir="column"
-		>
-			{/* <Text fontWeight="semibold" pl={3} justifySelf="flex-start"></Text> */}
+		<>
+			<Icon
+				zIndex={2}
+				display={['inline', 'inline', 'none']}
+				position={'absolute'}
+				top="5"
+				onClick={() => setIsOpen(!isOpen)}
+				left="5"
+				as={!isOpen ? AiOutlineMenu : CloseButton}
+			/>
 
-			<Box mt={5}>
-				<NavLink href="/" icon={<AiFillHome />}>
-					Home
-				</NavLink>
-				<NavLink icon={<FaPen />}>Writing</NavLink>
-			</Box>
+			<Flex
+				display={{
+					base: isOpen ? 'flex' : 'none',
+					md: 'flex',
+					lg: 'flex',
+				}}
+				w={['100%', '100%', '15%']}
+				h="100vh"
+				position="sticky"
+				alignSelf="flex-start"
+				top={0}
+				p={3}
+				flexDir="column"
+			>
+				<Box mt={[12, 14, 5]}>
+					<NavLink href="/" icon={<AiFillHome />}>
+						Home
+					</NavLink>
+					<NavLink icon={<FaPen />}>Writing</NavLink>
+				</Box>
 
-			{/* Me */}
-			<Box mt={10}>
-				<SectionTitle>
-					<Link href="/me">Me</Link>
-				</SectionTitle>
+				{/* Me */}
+				<Box mt={10}>
+					<SectionTitle>
+						<Link href="/me">Me</Link>
+					</SectionTitle>
 
-				<NavLink href="/bookmarks" icon={<AiFillBook />}>
-					Bookmarks
-				</NavLink>
-				<NavLink icon={<BsStack />}>Stack</NavLink>
-				<NavLink icon={<AiFillStar />}>Gear</NavLink>
-				<NavLink icon={<RiGameFill />}>Misc</NavLink>
-			</Box>
+					<NavLink href="/bookmarks" icon={<AiFillBook />}>
+						Bookmarks
+					</NavLink>
+					<NavLink icon={<BsStack />}>Stack</NavLink>
+					<NavLink icon={<AiFillStar />}>Gear</NavLink>
+					<NavLink icon={<RiGameFill />}>Misc</NavLink>
+				</Box>
 
-			{/* Projects */}
-			<Box mt={10}>
-				<SectionTitle>
-					<Link href="/projects">Recent Projects</Link>
-				</SectionTitle>
+				{/* Projects */}
+				<Box mt={10}>
+					<SectionTitle>
+						<Link href="/projects">Recent Projects</Link>
+					</SectionTitle>
 
-				{projectsData &&
-					projectsData
-						.map((p) => (
-							<NavLink
-								key={p.name}
-								noActive
-								href={'/projects/' + p.name.toLowerCase().split(' ').join('-')}
-								icon={<StatusIcon color={tags_colors[p.language]} />}
-							>
-								{p.name}
-							</NavLink>
-						))
-						.slice(0, 4)}
-			</Box>
+					{projectsData &&
+						projectsData
+							.map((p) => (
+								<NavLink
+									key={p.name}
+									noActive
+									href={
+										'/projects/' + p.name.toLowerCase().split(' ').join('-')
+									}
+									icon={<StatusIcon color={tags_colors[p.language]} />}
+								>
+									{p.name}
+								</NavLink>
+							))
+							.slice(0, 4)}
+				</Box>
 
-			<Box mt={10}>
-				<SectionTitle>Social</SectionTitle>
-				<NavLink
-					noActive
-					icon={<BsTwitter />}
-					href="https://twitter.com/nishilkapadia"
-				>
-					Twitter
-				</NavLink>
-				<NavLink noActive icon={<BsGithub />} href="https://github.com/Nish7">
-					Github
-				</NavLink>
-				<NavLink
-					noActive
-					icon={<BsLinkedin />}
-					href="https://www.linkedin.com/in/nishil-kapadia/"
-				>
-					LinkedIn
-				</NavLink>
-				<NavLink
-					noActive
-					icon={<AiFillFile />}
-					href="https://drive.google.com/file/d/1QC6G8npqJJXqlJGD1O9LsytvMdtuxtUQ/view?usp=sharing"
-				>
-					Resume
-				</NavLink>
-			</Box>
+				<Box mt={10}>
+					<SectionTitle>Social</SectionTitle>
+					<NavLink
+						noActive
+						icon={<AiFillFile />}
+						href="https://drive.google.com/file/d/1QC6G8npqJJXqlJGD1O9LsytvMdtuxtUQ/view?usp=sharing"
+					>
+						Resume
+					</NavLink>
+					<NavLink
+						noActive
+						icon={<BsTwitter />}
+						href="https://twitter.com/nishilkapadia"
+					>
+						Twitter
+					</NavLink>
+					<NavLink noActive icon={<BsGithub />} href="https://github.com/Nish7">
+						Github
+					</NavLink>
+					<NavLink
+						noActive
+						icon={<BsLinkedin />}
+						href="https://www.linkedin.com/in/nishil-kapadia/"
+					>
+						LinkedIn
+					</NavLink>
+				</Box>
 
-			<Box mt="auto" w="100%">
-				<CurrentPlaying />
-				<ColorModeBtn />
-			</Box>
-		</Flex>
+				<Box mt="auto" w="100%">
+					<CurrentPlaying />
+					<ColorModeBtn />
+				</Box>
+			</Flex>
+		</>
 	);
 }
 
 function NavLink({ children, icon, noActive, isLink, href = '/coming-soon' }) {
+	const { setIsOpen } = useContext(GlobalNavigationContext);
+
 	const { pathname } = useRouter();
 	const active = noActive || href == '/coming-soon' ? false : pathname == href;
 
 	return (
 		<Link href={href} passHref target="_blank">
 			<Button
+				onClick={() => setIsOpen(false)}
 				h="auto"
 				isFullWidth
 				leftIcon={icon}
