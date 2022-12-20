@@ -23,7 +23,7 @@ export default function Home({ workData, educationData }) {
 					<Text fontWeight="semibold">Software Developer</Text>
 					<Text
 						mt={7}
-						w="80%"
+						w={['full', 'full', '80%']}
 						letterSpacing={0.5}
 						textAlign={['center', 'center', 'left']}
 					>
