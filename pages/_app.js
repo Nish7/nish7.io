@@ -6,22 +6,19 @@ import '@fontsource/ibm-plex-sans/700.css';
 
 import { useContext, useEffect } from 'react';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
-
-import Navbar from '../components/navbar/Navbar';
+import Navbar from '../components/navbar';
 import Providers from '@/components/providers/Providers';
 import { GlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
 
 function MyApp({ Component, pageProps }) {
-	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
-
 	const getLayout = Component.getLayout || ((page) => page);
 
 	return (
 		<Providers>
 			<Flex>
 				<Navbar />
+
 				<RenderPageComponent
-					isLargerThan800={isLargerThan800}
 					Component={Component}
 					getLayout={getLayout}
 					pageProps={pageProps}
@@ -31,13 +28,9 @@ function MyApp({ Component, pageProps }) {
 	);
 }
 
-function RenderPageComponent({
-	isLargerThan800,
-	Component,
-	getLayout,
-	pageProps,
-}) {
+function RenderPageComponent({ Component, getLayout, pageProps }) {
 	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
+	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
 	useEffect(() => {
 		if (isLargerThan800) {

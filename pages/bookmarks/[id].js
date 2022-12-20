@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from 'lib/enums';
-import HeadMeta from '@/components/HeadTag/HeadMeta';
+import HeadMeta from '@/components/headTag/HeadMeta';
 
 const bookmarkPage = ({ bookmarksData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -70,7 +70,7 @@ bookmarkPage.getLayout = function getLayout(page) {
 
 	return (
 		<Flex>
-			<BookmarkSidebar bookmarks={props.bookmarksData} isPage={true} />
+			<BookmarkSidebar bookmarks={props.bookmarksData} isPage />
 			{page}
 		</Flex>
 	);

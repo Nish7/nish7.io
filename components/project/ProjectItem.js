@@ -1,6 +1,6 @@
-import { Box, Icon, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import { StatusIcon } from '../navbar/Navbar';
+import { StatusIcon } from '../navbar';
 import { tags_colors } from 'lib/enums';
 
 function ProjectItem({ title, language, active }) {

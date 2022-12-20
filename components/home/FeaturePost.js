@@ -1,12 +1,4 @@
-import {
-	Box,
-	Flex,
-	Icon,
-	Tag,
-	Text,
-	useColorMode,
-	useColorModeValue,
-} from '@chakra-ui/react';
+import { Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { MdDateRange } from 'react-icons/md';
 

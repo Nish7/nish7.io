@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
-import HeadMeta from '@/components/HeadTag/HeadMeta';
+import HeadMeta from '@/components/headTag/HeadMeta';
 
 const ProjectPage = ({ projectsData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -27,6 +27,7 @@ const ProjectPage = ({ projectsData }) => {
 	return (
 		<>
 			<HeadMeta title={name} />
+
 			<Box
 				w={['100%', '100%', '70%']}
 				mt={[10, 10, 0]}
@@ -75,7 +76,7 @@ ProjectPage.getLayout = function getLayout(page) {
 
 	return (
 		<Flex>
-			<ProjectSidebar projects={props.projectsData} isPage={true} />
+			<ProjectSidebar projects={props.projectsData} isPage />
 			{page}
 		</Flex>
 	);
