@@ -55,7 +55,7 @@ function RenderPageComponent({
 			w={['100%', '100%', '85%']}
 			minH="100vh"
 			flexDirection="column"
-			justifyContent="center"
+			justifyContent={['flex-start', 'flex-start', 'center']}
 		>
 			{getLayout(<Component {...pageProps} />)}
 		</Flex>

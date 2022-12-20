@@ -33,7 +33,13 @@ const bookmarkPage = ({ bookmarksData }) => {
 	return (
 		<>
 			<HeadMeta title={name} />
-			<Box w={['100%', '100%', '70%']} py={8} mx="auto" h="auto" px={10}>
+			<Box
+				w={['100%', '100%', '70%']}
+				mt={[10, 10, 0]}
+				p={[4, 4, 8]}
+				mx="auto"
+				h="auto"
+			>
 				<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
 
 				<Text fontWeight="bold" fontSize="2xl">

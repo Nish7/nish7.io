@@ -32,15 +32,13 @@ function SidebarLayout({ title, shortcut = true, children, isPage = false }) {
 }
 
 const Sidebar = ({ title, toggle, useToggle, children, isPage = false }) => {
-	console.log(toggle);
-
 	return (
 		<Box
 			w={['100%', '100%', '30%']}
 			display={!isPage ? toggle : ['none', 'none', toggle]}
-			pl={5}
-			pr={3}
-			pt={8}
+			pl={[2, 2, 5]}
+			pr={[2, 2, 3]}
+			pt={[2, 2, 8]}
 			position="sticky"
 			alignSelf="flex-start"
 			top={0}
@@ -49,7 +47,7 @@ const Sidebar = ({ title, toggle, useToggle, children, isPage = false }) => {
 			css={{ '&::-webkit-scrollbar': { display: 'none' } }}
 		>
 			<Flex justify="space-between" align="middle">
-				<Text mb={8} pl={2} fontWeight="semibold">
+				<Text mt={[2, 2, 0]} mb={8} pl={[12, 12, 2]} fontWeight="semibold">
 					{title}
 				</Text>
 
