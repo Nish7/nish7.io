@@ -26,8 +26,6 @@ function Navbar() {
 	const { pathname } = useRouter();
 	const isPage = pathname.includes('[id]');
 
-	console.log(pathname.split('/')[1]);
-
 	useEffect(() => {
 		getProjects().then((data) => setProjectData(data));
 	}, []);

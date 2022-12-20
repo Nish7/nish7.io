@@ -10,6 +10,7 @@ function Projects() {
 		<>
 			<HeadMeta title="Projects" />
 			<Box
+				display={['none', 'none', 'block']}
 				w="70%"
 				pl={5}
 				sx={{

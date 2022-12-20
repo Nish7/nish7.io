@@ -27,7 +27,13 @@ const ProjectPage = ({ projectsData }) => {
 	return (
 		<>
 			<HeadMeta title={name} />
-			<Box w="70%" py={8} mx="auto" h="auto" px={10}>
+			<Box
+				w={['100%', '100%', '70%']}
+				mt={[10, 10, 0]}
+				p={[4, 4, 8]}
+				mx="auto"
+				h="auto"
+			>
 				<TagLabel color={tags_colors?.[language]}>{language}</TagLabel>
 
 				<Link
@@ -69,7 +75,7 @@ ProjectPage.getLayout = function getLayout(page) {
 
 	return (
 		<Flex>
-			<ProjectSidebar projects={props.projectsData} />
+			<ProjectSidebar projects={props.projectsData} isPage={true} />
 			{page}
 		</Flex>
 	);
