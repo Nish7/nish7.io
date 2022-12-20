@@ -3,13 +3,13 @@ import SidebarLayout from '../layouts/SidebarLayout';
 import BookmarkItem from './BookmarkItem';
 import { useRouter } from 'next/router';
 
-const BookmarkSidebar = ({ bookmarks = [] }) => {
+const BookmarkSidebar = ({ bookmarks = [], isPage }) => {
 	const {
 		query: { id },
 	} = useRouter();
 
 	return (
-		<SidebarLayout title="Bookmarks">
+		<SidebarLayout title="Bookmarks" isPage={isPage}>
 			{bookmarks.map(({ name, link, id: bookmarkId }) => (
 				<BookmarkItem
 					active={id == name.toLowerCase().split(' ').join('-')}

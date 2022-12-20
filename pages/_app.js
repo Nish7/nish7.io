@@ -20,7 +20,6 @@ function MyApp({ Component, pageProps }) {
 		<Providers>
 			<Flex>
 				<Navbar />
-
 				<RenderPageComponent
 					isLargerThan800={isLargerThan800}
 					Component={Component}
