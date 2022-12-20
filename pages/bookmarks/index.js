@@ -1,27 +1,14 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
-import HeadMeta from '@/components/HeadTag/HeadMeta';
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import HeadMeta from '@/components/headTag/HeadMeta';
+import PageBackground from '@/components/layouts/PageBackground';
+import { Flex } from '@chakra-ui/react';
 import { supabase } from 'lib/supabase';
 
 function Bookmarks() {
-	const color = useColorModeValue('rgba(0,0,0,0.7)', 'rgba(255,255,255,0.5)');
-
 	return (
 		<>
 			<HeadMeta title="Bookmarks" />
-
-			<Box
-				display={['none', 'none', 'block']}
-				w={'70%'}
-				pl={5}
-				sx={{
-					backgroundColor: 'rgba(0,0,0,0)',
-					opacity: 0.8,
-					backgroundImage: `radial-gradient(${color} 1px, transparent 1px), radial-gradient(${color} 1px, rgba(0,0,0,0) 1px)`,
-					backgroundSize: '40px 40px',
-					backgroundPosition: '0 0,20px 20px',
-				}}
-			></Box>
+			<PageBackground />
 		</>
 	);
 }
