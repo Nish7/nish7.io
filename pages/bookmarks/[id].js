@@ -1,6 +1,14 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '../../components/tag/TagLabel';
-import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
+import {
+	Flex,
+	Text,
+	Box,
+	Icon,
+	Button,
+	Link,
+	useMediaQuery,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { supabase } from 'lib/supabase';
 import { FiLink } from 'react-icons/fi';
@@ -25,7 +33,7 @@ const bookmarkPage = ({ bookmarksData }) => {
 	return (
 		<>
 			<HeadMeta title={name} />
-			<Box w="70%" py={8} mx="auto" h="auto" px={10}>
+			<Box w={['100%', '100%', '70%']} py={8} mx="auto" h="auto" px={10}>
 				<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
 
 				<Text fontWeight="bold" fontSize="2xl">
@@ -56,7 +64,7 @@ bookmarkPage.getLayout = function getLayout(page) {
 
 	return (
 		<Flex>
-			<BookmarkSidebar bookmarks={props.bookmarksData} />
+			<BookmarkSidebar bookmarks={props.bookmarksData} isPage />
 			{page}
 		</Flex>
 	);

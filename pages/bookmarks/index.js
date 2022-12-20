@@ -11,7 +11,8 @@ function Bookmarks() {
 			<HeadMeta title="Bookmarks" />
 
 			<Box
-				w="70%"
+				display={['none', 'none', 'block']}
+				w={'70%'}
 				pl={5}
 				sx={{
 					backgroundColor: 'rgba(0,0,0,0)',
