@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import Shortcut from './Shortcut';
 
 function SidebarLayout({ title, shortcut = true, children, isPage = false }) {
-	const [toggle, useToggle] = useState('');
+	const [toggle, useToggle] = useState('block');
 	const toggleCallback = () =>
-		toggle == '' ? useToggle('none') : useToggle('');
+		toggle == 'block' ? useToggle('none') : useToggle('block');
 
 	useEffect(() => {
 		if (shortcut) {
-			useToggle('');
+			useToggle('block');
 		}
 	}, [useToggle, shortcut]);
 
@@ -31,13 +31,13 @@ function SidebarLayout({ title, shortcut = true, children, isPage = false }) {
 	);
 }
 
-const Sidebar = ({ title, toggle, useToggle, children, isPage }) => {
-	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+const Sidebar = ({ title, toggle, useToggle, children, isPage = false }) => {
+	console.log(toggle);
 
 	return (
 		<Box
 			w={['100%', '100%', '30%']}
-			display={isPage && !isLargerThan800 ? 'none' : toggle}
+			display={!isPage ? toggle : ['none', 'none', toggle]}
 			pl={5}
 			pr={3}
 			pt={8}

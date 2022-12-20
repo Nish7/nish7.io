@@ -64,7 +64,7 @@ bookmarkPage.getLayout = function getLayout(page) {
 
 	return (
 		<Flex>
-			<BookmarkSidebar bookmarks={props.bookmarksData} isPage />
+			<BookmarkSidebar bookmarks={props.bookmarksData} isPage={true} />
 			{page}
 		</Flex>
 	);
