@@ -1,7 +1,7 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import { StatusIcon } from '../navbar';
 import { tags_colors } from 'lib/enums';
+import StatusIcon from '../navbar/StatusIcon';
 
 function ProjectItem({ title, language, active }) {
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.100');
