@@ -9,7 +9,7 @@ import {
 	BsTwitter,
 	BsLinkedin,
 } from 'react-icons/bs';
-import { FaPen } from 'react-icons/fa';
+import { FaArrowLeft, FaPen } from 'react-icons/fa';
 import { RiGameFill } from 'react-icons/ri';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
@@ -23,22 +23,47 @@ import { CloseButton } from '@chakra-ui/react';
 function Navbar() {
 	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
 	const [projectsData, setProjectData] = useState();
+	const { pathname } = useRouter();
+	const isPage = pathname.includes('[id]');
+
+	console.log(pathname.split('/')[1]);
 
 	useEffect(() => {
 		getProjects().then((data) => setProjectData(data));
 	}, []);
 
+	let NavBtn = (
+		<Icon
+			zIndex={2}
+			display={['inline', 'inline', 'none']}
+			position={'absolute'}
+			sx={{ cursor: 'pointer' }}
+			top="5"
+			onClick={() => setIsOpen(!isOpen)}
+			left="5"
+			as={!isOpen ? AiOutlineMenu : CloseButton}
+		/>
+	);
+
+	if (isPage) {
+		NavBtn = (
+			<Link href={`/${pathname.split('/')[1]}`} passHref>
+				<Icon
+					zIndex={2}
+					display={['inline', 'inline', 'none']}
+					position={'absolute'}
+					sx={{ cursor: 'pointer' }}
+					top="5"
+					left="5"
+					as={FaArrowLeft}
+				/>
+			</Link>
+		);
+	}
+
 	return (
 		<>
-			<Icon
-				zIndex={2}
-				display={['inline', 'inline', 'none']}
-				position={'absolute'}
-				top="5"
-				onClick={() => setIsOpen(!isOpen)}
-				left="5"
-				as={!isOpen ? AiOutlineMenu : CloseButton}
-			/>
+			{NavBtn}
 
 			<Flex
 				display={{
