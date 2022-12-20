@@ -61,7 +61,7 @@ const ProjectPage = ({ projectsData }) => {
 					target="_blank"
 					href={html_url}
 				>
-					<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
+					<Button colorScheme="blue" size="md" w="100%" mx="auto" my={10}>
 						<Icon boxSize={3} as={FiLink} mr={1} />
 						<Text>Github</Text>
 					</Button>

@@ -55,7 +55,7 @@ const bookmarkPage = ({ bookmarksData }) => {
 				</Text>
 
 				<Link style={{ textDecoration: 'none' }} href={link} target="_blank">
-					<Button colorScheme="blue" size="md" w="90%" mx="auto" my={10}>
+					<Button colorScheme="blue" size="md" w="100%" mx="auto" my={10}>
 						<Icon boxSize={3} as={FiLink} mr={1} />
 						<Text>Visit</Text>
 					</Button>
