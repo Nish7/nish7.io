@@ -1,10 +1,10 @@
 import ProjectSidebar from '@/components/project/ProjectSidebar';
-import TagLabel from '../../components/tag/TagLabel';
+import TagLabel from '@/components/tag/TagLabel';
 import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
-import { tags_colors } from '../../lib/enums';
-import getProjects from '../../lib/getProjects';
+import { tags_colors } from '@/lib/enums';
+import getProjects from '@/lib/getProjects';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import Link from 'next/link';
 
@@ -17,7 +17,6 @@ const ProjectPage = ({ projectsData }) => {
 		name,
 		html_url,
 		description,
-		created_at,
 		language,
 		topics,
 		homepage: homepage_link,
@@ -40,7 +39,8 @@ const ProjectPage = ({ projectsData }) => {
 
 				<Link
 					style={{ textDecoration: 'none' }}
-					href={homepage_link?.length != 0 ? homepage_link : '#'}
+					href={homepage_link ?? '#'}
+					passHref
 				>
 					<Text fontWeight="bold" fontSize="2xl" _hover={{ color: 'blue.300' }}>
 						{name.split('-').join(' ')}
@@ -58,6 +58,7 @@ const ProjectPage = ({ projectsData }) => {
 				</Text>
 
 				<Link
+					passHref
 					style={{ textDecoration: 'none' }}
 					target="_blank"
 					href={html_url}

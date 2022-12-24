@@ -7,7 +7,7 @@ function GoBackBtn() {
 	const { pathname } = useRouter();
 
 	return (
-		<Link href={`/${pathname.split('/')[1]}`}>
+		<Link href={`/${pathname.split('/')[1]}`} passHref>
 			<Icon
 				zIndex={2}
 				display={['inline', 'inline', 'none']}
