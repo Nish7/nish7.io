@@ -1,7 +1,6 @@
-import React from 'react';
+import { useRouter } from 'next/router';
 import SidebarLayout from '../layouts/SidebarLayout';
 import ProjectItem from './ProjectItem';
-import { useRouter } from 'next/router';
 
 const ProjectSidebar = ({ projects = [], isPage }) => {
 	const {

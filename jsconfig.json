@@ -7,13 +7,10 @@
     "module": "es2015",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/pages/*": [
-        "./pages/*"
-      ]
-    }
+			"@/components/*": ["src/components/*"],
+			"@/pages/*": ["src/pages/*"],
+			"@/lib/*": ["src/lib/*"]
+		}
   },
   "exclude": [
     "dist",

@@ -2,7 +2,7 @@ import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
 import { Flex } from '@chakra-ui/react';
-import { supabase } from 'lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 function Bookmarks() {
 	return (
@@ -34,7 +34,5 @@ export async function getStaticProps() {
 		revalidate: 10,
 	};
 }
-
-
 
 export default Bookmarks;

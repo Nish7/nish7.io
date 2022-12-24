@@ -1,19 +1,11 @@
-import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
-import TagLabel from '../../components/tag/TagLabel';
-import {
-	Flex,
-	Text,
-	Box,
-	Icon,
-	Button,
-	Link,
-	useMediaQuery,
-} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { supabase } from 'lib/supabase';
+import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
 import { FiLink } from 'react-icons/fi';
-import { tags_colors } from 'lib/enums';
+import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
+import TagLabel from '@/components/tag/TagLabel';
 import HeadMeta from '@/components/headTag/HeadMeta';
+import { supabase } from '@/lib/supabase';
+import { tags_colors } from '@/lib/enums';
 
 const bookmarkPage = ({ bookmarksData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks

@@ -1,8 +1,8 @@
+import { Box, Flex, Text } from '@chakra-ui/react';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import Education from '@/components/home/Education';
 import Work from '@/components/home/Work';
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { supabase } from 'lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export default function Home({ workData, educationData }) {
 	return (

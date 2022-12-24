@@ -1,7 +1,7 @@
 import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
-import fetcher from 'lib/fetcher';
+import fetcher from '@/lib/fetcher';
 
 function CurrentPlaying() {
 	const { data } = useSWR('/api/spotify/currentPlaying', fetcher);
