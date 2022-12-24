@@ -9,9 +9,7 @@ import SectionTitle from './SectionTitle';
 function MeList() {
 	return (
 		<Box mt={10}>
-			<SectionTitle>
-				<Link href="/me">Me</Link>
-			</SectionTitle>
+			<SectionTitle p_href="/me">Me</SectionTitle>
 
 			<NavLink href="/bookmarks" icon={<AiFillBook />}>
 				Bookmarks

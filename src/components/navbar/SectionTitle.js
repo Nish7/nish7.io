@@ -1,9 +1,12 @@
 import { Text } from '@chakra-ui/react';
+import Link from 'next/link';
 
-export default function SectionTitle({ children }) {
+export default function SectionTitle({ p_href = '/', children }) {
 	return (
-		<Text fontSize="sm" fontWeight="semibold" color="gray.400" pl={3} mb={2}>
-			{children}
-		</Text>
+		<Link href={p_href}>
+			<Text fontSize="sm" fontWeight="semibold" color="gray.400" pl={3} mb={2}>
+				{children}
+			</Text>
+		</Link>
 	);
 }

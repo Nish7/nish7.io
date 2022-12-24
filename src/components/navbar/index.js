@@ -4,8 +4,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaPen } from 'react-icons/fa';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
-import getProjects from '../../lib/getProjects';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
 import HamburgerMenuIcon from './HamburgerMenuIcon';
 import GoBackBtn from './GoBackBtn';
@@ -16,13 +15,8 @@ import MeList from './MeList';
 
 function Navbar() {
 	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
-	const [projectsData, setProjectData] = useState();
 	const { pathname } = useRouter();
 	const isPage = pathname.includes('[id]');
-
-	useEffect(() => {
-		getProjects().then((data) => setProjectData(data));
-	}, []);
 
 	return (
 		<>
@@ -55,7 +49,7 @@ function Navbar() {
 
 				<MeList />
 
-				<ProjectList projectsData={projectsData} />
+				<ProjectList />
 
 				<SocialList />
 

@@ -1,11 +1,12 @@
 import ProjectSidebar from '@/components/project/ProjectSidebar';
 import TagLabel from '../../components/tag/TagLabel';
-import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
+import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from '../../lib/enums';
 import getProjects from '../../lib/getProjects';
 import HeadMeta from '@/components/headTag/HeadMeta';
+import Link from 'next/link';
 
 const ProjectPage = ({ projectsData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks

@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import { Flex, Text, Box, Icon, Button, Link } from '@chakra-ui/react';
+import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { FiLink } from 'react-icons/fi';
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '@/components/tag/TagLabel';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import { supabase } from '@/lib/supabase';
 import { tags_colors } from '@/lib/enums';
+import Link from 'next/link';
 
 const bookmarkPage = ({ bookmarksData }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
