@@ -1,4 +1,5 @@
-import { Button, Link, Text } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { GlobalNavigationContext } from '../context/GlobalNavigationContext';

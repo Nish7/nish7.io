@@ -1,30 +1,34 @@
-import { Box, Link } from '@chakra-ui/react';
-import React from 'react';
+import { Box } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import NavLink from './NavLink';
 import SectionTitle from './SectionTitle';
 import StatusIcon from './StatusIcon';
-import { tags_colors } from '../../lib/enums';
+import { tags_colors } from '@/lib/enums';
+import getProjects from '@/lib/getProjects';
 
-function ProjectList({ projectsData }) {
+function ProjectList() {
+	const [projectsData, setProjectData] = useState([]);
+
+	useEffect(() => {
+		getProjects().then((data) => setProjectData(data));
+	}, []);
+
 	return (
 		<Box mt={10}>
-			<SectionTitle>
-				<Link href="/projects">Recent Projects</Link>
-			</SectionTitle>
+			<SectionTitle p_href="/projects">Recent Projects</SectionTitle>
 
-			{projectsData &&
-				projectsData
-					.map(({ name, language }) => (
-						<NavLink
-							key={name}
-							noActive
-							href={'/projects/' + name.toLowerCase().split(' ').join('-')}
-							icon={<StatusIcon color={tags_colors[language]} />}
-						>
-							{name}
-						</NavLink>
-					))
-					.slice(0, 4)}
+			{projectsData
+				.map(({ name, language }) => (
+					<NavLink
+						key={name}
+						noActive
+						href={'/projects/' + name.toLowerCase().split(' ').join('-')}
+						icon={<StatusIcon color={tags_colors[language]} />}
+					>
+						{name}
+					</NavLink>
+				))
+				.slice(0, 4)}
 		</Box>
 	);
 }

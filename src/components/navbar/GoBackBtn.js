@@ -1,4 +1,5 @@
-import { Icon, Link } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -6,7 +7,7 @@ function GoBackBtn() {
 	const { pathname } = useRouter();
 
 	return (
-		<Link href={`/${pathname.split('/')[1]}`} passHref>
+		<Link href={`/${pathname.split('/')[1]}`}>
 			<Icon
 				zIndex={2}
 				display={['inline', 'inline', 'none']}

@@ -1,5 +1,4 @@
 import { CloseButton, Icon } from '@chakra-ui/react';
-import React from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
 function HamburgerMenuIcon({ isOpen, setIsOpen }) {
