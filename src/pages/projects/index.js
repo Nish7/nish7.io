@@ -1,8 +1,8 @@
+import { Flex } from '@chakra-ui/react';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
 import ProjectSidebar from '@/components/project/ProjectSidebar';
-import { Flex } from '@chakra-ui/react';
-import getProjects from '../../lib/getProjects';
+import getProjects from '@/lib/getProjects';
 
 function Projects() {
 	return (

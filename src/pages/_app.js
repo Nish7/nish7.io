@@ -1,4 +1,3 @@
-// Fonts
 import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/500.css';
 import '@fontsource/ibm-plex-sans/600.css';
@@ -6,8 +5,8 @@ import '@fontsource/ibm-plex-sans/700.css';
 
 import { useContext, useEffect } from 'react';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
-import Navbar from '../components/navbar';
-import Providers from '@/components/providers/Providers';
+import Navbar from '@/components/navbar';
+import Providers from '@/components/providers';
 import { GlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
 
 function MyApp({ Component, pageProps }) {
