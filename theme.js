@@ -17,8 +17,8 @@ const fonts = {
 };
 
 export const config = {
-	initialColorMode: 'system',
-	useSystemColorMode: false,
+	initialColorMode: 'dark',
+	useSystemColorMode: true,
 };
 
 export default extendTheme({ config, styles, colors, fonts });
