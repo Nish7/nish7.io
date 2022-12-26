@@ -3,7 +3,7 @@ import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { FiLink } from 'react-icons/fi';
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '@/components/tag/TagLabel';
-import HeadMeta from '@/components/headTag/HeadMeta';
+import HeadMeta from '@/components/HeadTag/HeadMeta';
 import { supabase } from '@/lib/supabase';
 import { tags_colors } from '@/lib/consts';
 import Link from 'next/link';

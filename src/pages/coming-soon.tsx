@@ -1,4 +1,4 @@
-import HeadMeta from '@/components/headTag/HeadMeta';
+import HeadMeta from '@/components/HeadTag/HeadMeta';
 import { Flex, Text } from '@chakra-ui/react';
 
 function comingsoon() {

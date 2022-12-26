@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
 import { tags_colors } from '@/lib/consts';
 import getProjects from '@/lib/getProjects';
-import HeadMeta from '@/components/headTag/HeadMeta';
+import HeadMeta from '@/components/HeadTag/HeadMeta';
 import Link from 'next/link';
 
 const ProjectPage = ({ projectsData }) => {
