@@ -20,7 +20,6 @@ export default async function handler(req, res) {
 				Authorization: `Basic ${basic}`,
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
-			json: true,
 		}
 	);
 

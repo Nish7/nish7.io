@@ -1,8 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
-const colors = {};
-
 const styles = {
 	global: (props) => ({
 		body: {
@@ -16,9 +14,14 @@ const fonts = {
 	body: 'IBM Plex Sans',
 };
 
-export const config = {
+type ChakaraConfig = {
+	initialColorMode: 'light' | 'dark' | 'system';
+	useSystemColorMode?: boolean;
+};
+
+export const config: ChakaraConfig = {
 	initialColorMode: 'dark',
 	useSystemColorMode: true,
 };
 
-export default extendTheme({ config, styles, colors, fonts });
+export default extendTheme({ config, styles, fonts });

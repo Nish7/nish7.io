@@ -7,8 +7,7 @@ import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
 function NavLink({
 	children,
 	icon,
-	noActive,
-	isLink,
+	noActive = false,
 	href = '/coming-soon',
 	newTab = false,
 }) {

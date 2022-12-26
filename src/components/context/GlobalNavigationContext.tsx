@@ -1,2 +1,2 @@
 import { createContext } from 'react';
-export const GlobalNavigationContext = createContext();
+export const GlobalNavigationContext = createContext('');

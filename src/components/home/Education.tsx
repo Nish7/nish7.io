@@ -45,7 +45,7 @@ function Study({ title, place, start_date, end_date }) {
 				flexDir={['column', 'column', 'row']}
 				alignItems={'flex-end'}
 			>
-				<Text mr={[0, 0, 5]} whiteSpace={['wrap', 'wrap', 'nowrap']}>
+				<Text mr={[0, 0, 5]} whiteSpace={['normal', 'normal', 'nowrap']}>
 					{place}
 				</Text>
 				<Text color="gray.600" whiteSpace="nowrap">
