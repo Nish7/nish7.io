@@ -5,7 +5,7 @@ import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '@/components/tag/TagLabel';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import { supabase } from '@/lib/supabase';
-import { tags_colors } from '@/lib/enums';
+import { tags_colors } from '@/lib/consts';
 import Link from 'next/link';
 
 const bookmarkPage = ({ bookmarksData }) => {

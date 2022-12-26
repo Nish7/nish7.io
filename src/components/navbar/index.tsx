@@ -4,8 +4,10 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaPen } from 'react-icons/fa';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
-import { useContext } from 'react';
-import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
+import {
+	GlobalNavigationContext,
+	useGlobalNavigationContext,
+} from '../context/GlobalNavigationContext';
 import HamburgerMenuIcon from './HamburgerMenuIcon';
 import GoBackBtn from './GoBackBtn';
 import NavLink from './NavLink';
@@ -14,7 +16,7 @@ import ProjectList from './ProjectList';
 import MeList from './MeList';
 
 function Navbar() {
-	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
+	const { isOpen, setIsOpen } = useGlobalNavigationContext();
 	const { pathname } = useRouter();
 	const isPage = pathname.includes('[id]');
 

@@ -1,22 +1,30 @@
 import { Octokit } from 'octokit';
+import { Endpoints } from '@octokit/types';
+import { unwantedRepos } from './consts';
+
+export type listUserReposResp =
+	Endpoints['GET /users/{username}/repos']['response'];
 
 export default async function getProjects() {
 	const octokit = new Octokit({
 		auth: process.env.GITHUB_ACCESS_TOKEN,
 	});
 
-	let data = await octokit.request(
+	const data = (await octokit.request(
 		'GET /users/{username}/repos?sort=created&direction=desc',
 		{
 			username: 'Nish7',
 		}
-	);
+	)) as listUserReposResp;
 
-	data = data.data.filter((r) => r.visibility === 'public');
+	const repos: listUserReposResp['data'] = data.data;
 
-	data = data.filter((p) => p.name != 'Nish7');
+	const noPublic = repos.filter((r) => r.visibility === 'public');
 
-	data = data.map(
+	// Filtering unwanted repos;
+	const noRepos = noPublic.filter(({name}) => !unwantedRepos.includes(name));
+
+	const extractData = noRepos.map(
 		({
 			name,
 			description,
@@ -36,5 +44,5 @@ export default async function getProjects() {
 		})
 	);
 
-	return data;
+	return extractData;
 }

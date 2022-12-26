@@ -3,7 +3,7 @@ import TagLabel from '@/components/tag/TagLabel';
 import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FiLink } from 'react-icons/fi';
-import { tags_colors } from '@/lib/enums';
+import { tags_colors } from '@/lib/consts';
 import getProjects from '@/lib/getProjects';
 import HeadMeta from '@/components/headTag/HeadMeta';
 import Link from 'next/link';

@@ -1,22 +1,12 @@
-import { useState } from 'react';
 import theme from '../../../theme';
 import { ChakraProvider } from '@chakra-ui/provider';
-import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
+import GlobalNavigationProvider from './GlobalNavigationProvider';
 
 function Providers({ children }) {
-	const [state, setState] = useState({
-		isOpen: false,
-		setIsOpen,
-	});
-
-	function setIsOpen(isOpen) {
-		return setState({ ...state, isOpen });
-	}
-
 	return (
-		<GlobalNavigationContext.Provider value={state}>
+		<GlobalNavigationProvider>
 			<ChakraProvider theme={theme}>{children}</ChakraProvider>
-		</GlobalNavigationContext.Provider>
+		</GlobalNavigationProvider>
 	);
 }
 

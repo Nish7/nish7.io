@@ -3,6 +3,7 @@ import HeadMeta from '@/components/headTag/HeadMeta';
 import Education from '@/components/home/Education';
 import Work from '@/components/home/Work';
 import { supabase } from '@/lib/supabase';
+import { GetStaticProps } from 'next';
 
 export default function Home({ workData, educationData }) {
 	return (
@@ -44,7 +45,7 @@ export default function Home({ workData, educationData }) {
 	);
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	let { data: workData } = await supabase
 		.from('Work')
 		.select('*')
@@ -59,4 +60,4 @@ export async function getStaticProps() {
 		},
 		revalidate: 60,
 	};
-}
+};

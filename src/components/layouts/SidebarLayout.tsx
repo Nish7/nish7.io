@@ -25,12 +25,7 @@ function SidebarLayout({ title, shortcut = true, children, isPage }) {
 		);
 
 	return (
-		<Sidebar
-			title={title}
-			toggle={toggle}
-			isPage={isPage}
-			useToggle={useToggle}
-		>
+		<Sidebar title={title} toggle={toggle} isPage={isPage} useToggle={false}>
 			{children}
 		</Sidebar>
 	);
