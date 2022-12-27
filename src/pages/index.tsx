@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import HeadMeta from '@/components/headTag/HeadMeta';
+import HeadMeta from '@/components/layouts/HeadMeta';
 import Education from '@/components/home/Education';
 import Work from '@/components/home/Work';
 import { supabase } from '@/lib/supabase';
