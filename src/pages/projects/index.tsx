@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import HeadMeta from '@/components/HeadTag/HeadMeta';
+import HeadMeta from '@/components/headTag/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
 import ProjectSidebar from '@/components/project/ProjectSidebar';
 import getProjects from '@/lib/getProjects';

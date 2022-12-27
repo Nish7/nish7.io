@@ -1,5 +1,5 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
-import HeadMeta from '@/components/HeadTag/HeadMeta';
+import HeadMeta from '@/components/headTag/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
 import { Flex } from '@chakra-ui/react';
 import { supabase } from '@/lib/supabase';
