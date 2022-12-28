@@ -2,12 +2,12 @@ import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/500.css';
 import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-sans/700.css';
-
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import Navbar from '@/components/navbar';
 import Providers from '@/components/providers';
-import { GlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
+import { useGlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
+
 
 function MyApp({ Component, pageProps }) {
 	const getLayout = Component.getLayout || ((page) => page);
@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 function RenderPageComponent({ Component, getLayout, pageProps }) {
-	const { isOpen, setIsOpen } = useContext(GlobalNavigationContext);
+	const { isOpen, setIsOpen } = useGlobalNavigationContext();
 	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
 	useEffect(() => {

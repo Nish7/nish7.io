@@ -1,10 +1,12 @@
 export const tags_colors = {
 	JavaScript: 'yellow',
 	Java: 'orange',
-	typescript: 'blue',
-	html: 'purple',
+	TypeScript: 'blue',
+	HTML: 'purple',
 	Shell: 'green',
 	Website: 'red',
 	Portfolio: 'blue',
 	Reading: 'purple',
 };
+
+export const unwantedRepos = ['Nish7'];

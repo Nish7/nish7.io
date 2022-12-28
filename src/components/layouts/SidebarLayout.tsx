@@ -4,7 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import Shortcut from './Shortcut';
 
-function SidebarLayout({ title, shortcut = true, children, isPage = false }) {
+function SidebarLayout({ title, shortcut = true, children, isPage }) {
 	const [toggle, useToggle] = useState('block');
 	const toggleCallback = () =>
 		toggle == 'block' ? useToggle('none') : useToggle('block');
@@ -25,7 +25,7 @@ function SidebarLayout({ title, shortcut = true, children, isPage = false }) {
 		);
 
 	return (
-		<Sidebar title={title} toggle={toggle} isPage={isPage}>
+		<Sidebar title={title} toggle={toggle} isPage={isPage} useToggle={false}>
 			{children}
 		</Sidebar>
 	);

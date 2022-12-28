@@ -1,7 +1,7 @@
-import HeadMeta from '@/components/headTag/HeadMeta';
+import HeadMeta from '@/components/layouts/HeadMeta';
 import { Flex, Text } from '@chakra-ui/react';
 
-function comingsoon() {
+function ComingSoon() {
 	return (
 		<>
 			<HeadMeta title="Coming Soon" />
@@ -14,4 +14,4 @@ function comingsoon() {
 	);
 }
 
-export default comingsoon;
+export default ComingSoon;

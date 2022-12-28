@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import SidebarLayout from '../layouts/SidebarLayout';
 import ProjectItem from './ProjectItem';
 
-const ProjectSidebar = ({ projects = [], isPage }) => {
+const ProjectSidebar = ({ projects = [], isPage = false }) => {
 	const {
 		query: { id },
 	} = useRouter();

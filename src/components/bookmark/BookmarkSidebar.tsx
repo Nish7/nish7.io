@@ -3,7 +3,7 @@ import SidebarLayout from '../layouts/SidebarLayout';
 import BookmarkItem from './BookmarkItem';
 import { useRouter } from 'next/router';
 
-const BookmarkSidebar = ({ bookmarks = [], isPage }) => {
+const BookmarkSidebar = ({ bookmarks = [], isPage = false }) => {
 	const {
 		query: { id },
 	} = useRouter();

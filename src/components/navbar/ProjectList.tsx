@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import NavLink from './NavLink';
 import SectionTitle from './SectionTitle';
 import StatusIcon from './StatusIcon';
-import { tags_colors } from '@/lib/enums';
+import { tags_colors } from '@/lib/consts';
 import getProjects from '@/lib/getProjects';
 
 function ProjectList() {
