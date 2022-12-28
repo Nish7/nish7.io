@@ -6,10 +6,8 @@ import { useEffect } from 'react';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import Navbar from '@/components/navbar';
 import Providers from '@/components/providers';
-import {
-	GlobalNavigationContext,
-	useGlobalNavigationContext,
-} from '@/components/context/GlobalNavigationContext';
+import { useGlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
+
 
 function MyApp({ Component, pageProps }) {
 	const getLayout = Component.getLayout || ((page) => page);
