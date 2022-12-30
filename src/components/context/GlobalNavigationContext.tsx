@@ -8,5 +8,8 @@ export interface GlobalNavigationContextInterface {
 export const GlobalNavigationContext =
 	createContext<GlobalNavigationContextInterface | null>(null);
 
-export const useGlobalNavigationContext = () =>
-	useContext(GlobalNavigationContext);
+export const useGlobalNavigationContext = () => {
+	const c = useContext(GlobalNavigationContext);
+	if (c == undefined) throw new Error();
+	return c;
+};

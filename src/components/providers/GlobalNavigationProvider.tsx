@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { GlobalNavigationContext } from '../context/GlobalNavigationContext';
 
-const GlobalNavigationProvider = ({ children }) => {
+const GlobalNavigationProvider = ({ children }: { children?: ReactNode }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (

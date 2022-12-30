@@ -1,10 +1,14 @@
 // api/spotify/refresh
 import axios from 'axios';
-const refresh_token = process.env.REFRESH_TOKEN;
+import { NextApiRequest, NextApiResponse } from 'next';
+const refresh_token = process.env.REFRESH_TOKEN ?? '';
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 
-export default async function handler(req, res) {
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse
+) {
 	const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 
 	const response = await axios.post(

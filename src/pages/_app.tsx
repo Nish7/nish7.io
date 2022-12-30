@@ -7,27 +7,11 @@ import { Flex, useMediaQuery } from '@chakra-ui/react';
 import Navbar from '@/components/navbar';
 import Providers from '@/components/providers';
 import { useGlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
+import { _AppProps } from '@/lib/types';
 
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: _AppProps) {
 	const getLayout = Component.getLayout || ((page) => page);
 
-	return (
-		<Providers>
-			<Flex>
-				<Navbar />
-
-				<RenderPageComponent
-					Component={Component}
-					getLayout={getLayout}
-					pageProps={pageProps}
-				/>
-			</Flex>
-		</Providers>
-	);
-}
-
-function RenderPageComponent({ Component, getLayout, pageProps }) {
 	const { isOpen, setIsOpen } = useGlobalNavigationContext();
 	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
@@ -38,20 +22,28 @@ function RenderPageComponent({ Component, getLayout, pageProps }) {
 	}, [isLargerThan800, setIsOpen]);
 
 	return (
-		<Flex
-			display={{
-				base: !isOpen ? 'flex' : 'none',
-				md: 'flex',
-				lg: 'flex',
-			}}
-			w={['100%', '100%', '85%']}
-			minH="100vh"
-			flexDirection="column"
-			justifyContent={['flex-start', 'flex-start', 'center']}
-		>
-			{getLayout(<Component {...pageProps} />)}
-		</Flex>
+		<Providers>
+			<Flex>
+				<Navbar />
+
+				<Flex
+					display={{
+						base: !isOpen ? 'flex' : 'none',
+						md: 'flex',
+						lg: 'flex',
+					}}
+					w={['100%', '100%', '85%']}
+					minH="100vh"
+					flexDirection="column"
+					justifyContent={['flex-start', 'flex-start', 'center']}
+				>
+					{getLayout(<Component {...pageProps} />)}
+				</Flex>
+			</Flex>
+		</Providers>
 	);
 }
+
+
 
 export default MyApp;

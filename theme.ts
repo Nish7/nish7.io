@@ -14,14 +14,10 @@ const fonts = {
 	body: 'IBM Plex Sans',
 };
 
-type ChakaraConfig = {
-	initialColorMode: 'light' | 'dark' | 'system';
-	useSystemColorMode?: boolean;
-};
 
-export const config: ChakaraConfig = {
+export const config = {
 	initialColorMode: 'dark',
 	useSystemColorMode: true,
-};
+} as const;
 
 export default extendTheme({ config, styles, fonts });
