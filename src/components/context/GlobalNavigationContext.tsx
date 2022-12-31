@@ -5,11 +5,13 @@ export interface GlobalNavigationContextInterface {
 	setIsOpen: (b: boolean) => void;
 }
 
-export const GlobalNavigationContext =
-	createContext<GlobalNavigationContextInterface | null>(null);
+export const GlobalNavigationContext = createContext<GlobalNavigationContextInterface>(
+	{
+		isOpen: false,
+		setIsOpen: () => {},
+	}
+);
 
 export const useGlobalNavigationContext = () => {
-	const c = useContext(GlobalNavigationContext);
-	if (c == undefined) throw new Error();
-	return c;
+	return useContext(GlobalNavigationContext);
 };
