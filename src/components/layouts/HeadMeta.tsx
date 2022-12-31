@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-function HeadMeta({ title }) {
+function HeadMeta({ title }: { title: string }) {
 	return (
 		<Head>
 			<title>{title}</title>

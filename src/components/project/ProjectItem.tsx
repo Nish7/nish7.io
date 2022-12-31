@@ -3,7 +3,13 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { tags_colors } from '@/lib/consts';
 import StatusIcon from '../navbar/StatusIcon';
 
-function ProjectItem({ title, language, active }) {
+interface ProjectItemProp {
+	title: string;
+	language: string;
+	active: boolean;
+}
+
+function ProjectItem({ title, language, active }: ProjectItemProp) {
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.100');
 
 	return (

@@ -4,8 +4,15 @@ import Education from '@/components/home/Education';
 import Work from '@/components/home/Work';
 import { supabase } from '@/lib/supabase';
 import { GetStaticProps } from 'next';
+import { EducationProp, WorkProp } from '@/lib/types/interface';
 
-export default function Home({ workData, educationData }) {
+export default function Home({
+	workData,
+	educationData,
+}: {
+	workData: WorkProp[];
+	educationData: EducationProp[];
+}) {
 	return (
 		<>
 			<HeadMeta title="Nishil Kapadia | Home" />
@@ -47,17 +54,19 @@ export default function Home({ workData, educationData }) {
 
 export const getStaticProps: GetStaticProps = async () => {
 	let { data: workData } = await supabase
-		.from('Work')
+		.from<WorkProp>('Work')
 		.select('*')
 		.order('start_date', { ascending: false });
 
-	let { data: educationData } = await supabase.from('Education').select('*');
+	let { data: educationData } = await supabase
+		.from<EducationProp>('Education')
+		.select('*');
 
 	return {
 		props: {
 			workData,
 			educationData,
 		},
-		revalidate: 60,
+		revalidate: 10,
 	};
 };

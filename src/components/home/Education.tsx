@@ -1,6 +1,7 @@
+import { EducationProp } from '@/lib/types/interface';
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
-function Education({ data }) {
+function Education({ data }: { data: EducationProp[] }) {
 	return (
 		<Flex flexDir={['column', 'column', 'row']} mt={[10, 10, 14]}>
 			<Text fontWeight="semibold" color="gray.400" mb={1}>
@@ -22,7 +23,17 @@ function Education({ data }) {
 	);
 }
 
-function Study({ title, place, start_date, end_date }) {
+function Study({
+	title,
+	place,
+	start_date,
+	end_date,
+}: {
+	title: string;
+	place: string;
+	start_date: string;
+	end_date: string;
+}) {
 	const start = new Date(start_date);
 	const end = new Date(end_date);
 

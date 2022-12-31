@@ -2,10 +2,7 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 	const {
 		data: { access_token },
 	} = await axios.get('http://nish7.xyz/api/spotify/refresh');

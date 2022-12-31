@@ -4,10 +4,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaPen } from 'react-icons/fa';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
-import {
-	GlobalNavigationContext,
-	useGlobalNavigationContext,
-} from '../context/GlobalNavigationContext';
+import { useGlobalNavigationContext } from '../context/GlobalNavigationContext';
 import HamburgerMenuIcon from './HamburgerMenuIcon';
 import GoBackBtn from './GoBackBtn';
 import NavLink from './NavLink';

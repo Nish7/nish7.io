@@ -17,7 +17,7 @@ function FeaturePost() {
 	);
 }
 
-function BlogBox({ title, date }) {
+function BlogBox({ title, date }: { title: string; date: string }) {
 	// const bg = useColorModeValue('rgba(0,0,0,0.5)', 'white');
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.200');
 

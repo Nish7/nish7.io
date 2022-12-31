@@ -1,6 +1,7 @@
+import { WorkProp } from '@/lib/types/interface';
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
-function Work({ data }) {
+function Work({ data }: { data: WorkProp[] }) {
 	return (
 		<Flex mt={20} flexDir={['column', 'column', 'row']}>
 			<Text fontWeight="semibold" color="gray.400" mb={1}>
@@ -22,9 +23,19 @@ function Work({ data }) {
 	);
 }
 
-function Job({ comp, role, start_date, end_date }) {
+function Job({
+	comp,
+	role,
+	start_date,
+	end_date,
+}: {
+	comp: string;
+	role: string;
+	start_date: string;
+	end_date: string | null;
+}) {
 	const start = new Date(start_date);
-	const end = new Date(end_date);
+	const end = new Date(end_date ?? '');
 
 	start.setMonth(start.getMonth() + 1);
 	end.setMonth(end.getMonth() + 1);

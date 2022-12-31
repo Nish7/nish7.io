@@ -1,45 +1,14 @@
+import { colorSchemes } from '@/lib/consts';
 import { Tag, Text } from '@chakra-ui/react';
-import React from 'react';
+import { ReactNode } from 'react';
 
-const TagLabel = ({ color = 'gray', children }) => {
-	const colorSchemes = {
-		red: {
-			bg: 'rgba(228, 62, 62, 0.1)',
-			borderColor: 'rgba(171, 119, 119,0.1)',
-			color: 'red.500',
-		},
-		blue: {
-			bg: 'rgba(0, 67, 255,0.1)',
-			borderColor: 'rgba(0, 67, 255,0.1)',
-			color: 'blue.500',
-		},
-		gray: {
-			bg: 'rgb(91, 91, 91,0.15)',
-			borderColor: 'rgba(91, 91, 91,0.1)',
-			color: 'gray.500',
-		},
-		purple: {
-			bg: 'rgba(140, 0, 255,0.1)',
-			borderColor: 'rgba(140, 0, 255,0.1)',
-			color: 'purple.500',
-		},
-		green: {
-			bg: 'rgba(63, 255, 85,0.2)',
-			borderColor: 'rgba(63, 255, 85,0.1)',
-			color: 'green.500',
-		},
-		yellow: {
-			bg: 'rgb(243, 255, 76, 0.2)',
-			borderColor: 'rgb(243, 255, 76,0.1)',
-			color: 'yellow.500',
-		},
-		orange: {
-			bg: 'rgba(255, 93, 0,0.2)',
-			borderColor: 'rgba(255, 93, 0,0.2)',
-			color: 'orange.500',
-		},
-	};
-
+const TagLabel = ({
+	color = 'gray',
+	children,
+}: {
+	color?: string;
+	children: ReactNode;
+}) => {
 	return (
 		<Tag
 			size="sm"

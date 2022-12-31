@@ -1,7 +1,16 @@
 import { Button, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ReactElement, ReactNode } from 'react';
 import { useGlobalNavigationContext } from '../context/GlobalNavigationContext';
+
+interface NavlinkProp {
+	children: ReactNode;
+	icon: ReactElement;
+	noActive?: boolean;
+	href?: string;
+	newTab?: boolean;
+}
 
 function NavLink({
 	children,
@@ -9,7 +18,7 @@ function NavLink({
 	noActive = false,
 	href = '/coming-soon',
 	newTab = false,
-}) {
+}: NavlinkProp) {
 	const { setIsOpen } = useGlobalNavigationContext();
 	const { pathname } = useRouter();
 

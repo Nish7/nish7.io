@@ -1,10 +1,36 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Box, Flex, Icon, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import {
+	useState,
+	useEffect,
+	ReactNode,
+	SetStateAction,
+	Dispatch,
+} from 'react';
 import Shortcut from './Shortcut';
 
-function SidebarLayout({ title, shortcut = true, children, isPage }) {
+interface SidebarLayoutProp {
+	title: string;
+	shortcut?: boolean;
+	children: ReactNode;
+	isPage: boolean;
+}
+
+interface SidebarProp {
+	title: string;
+	toggle: string;
+	useToggle?: Dispatch<SetStateAction<string>>;
+	children: ReactNode;
+	isPage?: boolean;
+}
+
+function SidebarLayout({
+	title,
+	shortcut = true,
+	children,
+	isPage,
+}: SidebarLayoutProp) {
 	const [toggle, useToggle] = useState('block');
 	const toggleCallback = () =>
 		toggle == 'block' ? useToggle('none') : useToggle('block');
@@ -25,13 +51,19 @@ function SidebarLayout({ title, shortcut = true, children, isPage }) {
 		);
 
 	return (
-		<Sidebar title={title} toggle={toggle} isPage={isPage} useToggle={false}>
+		<Sidebar title={title} toggle={toggle} isPage={isPage}>
 			{children}
 		</Sidebar>
 	);
 }
 
-const Sidebar = ({ title, toggle, useToggle, children, isPage = false }) => {
+const Sidebar = ({
+	title,
+	toggle,
+	useToggle,
+	children,
+	isPage = false,
+}: SidebarProp) => {
 	return (
 		<Box
 			w={['100%', '100%', '30%']}

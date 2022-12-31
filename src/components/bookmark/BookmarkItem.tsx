@@ -2,7 +2,13 @@ import { Box, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FiLink } from 'react-icons/fi';
 
-function BookmarkItem({ title, site, active }) {
+interface BookmarkItemProp {
+	title: string;
+	site: string;
+	active: boolean;
+}
+
+function BookmarkItem({ title, site, active }: BookmarkItemProp) {
 	const bg = useColorModeValue('gray.100', 'whiteAlpha.100');
 
 	return (

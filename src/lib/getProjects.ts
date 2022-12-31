@@ -1,6 +1,7 @@
 import { Octokit } from 'octokit';
 import { Endpoints } from '@octokit/types';
 import { unwantedRepos } from './consts';
+import { ProjectProp } from './types/interface';
 
 export type listUserReposResp =
 	Endpoints['GET /users/{username}/repos']['response'];
@@ -22,7 +23,7 @@ export default async function getProjects() {
 	const noPublic = repos.filter((r) => r.visibility === 'public');
 
 	// Filtering unwanted repos;
-	const noRepos = noPublic.filter(({name}) => !unwantedRepos.includes(name));
+	const noRepos = noPublic.filter(({ name }) => !unwantedRepos.includes(name));
 
 	const extractData = noRepos.map(
 		({

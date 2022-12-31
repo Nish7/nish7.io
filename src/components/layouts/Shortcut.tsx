@@ -1,18 +1,37 @@
 import { Box } from '@chakra-ui/react';
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import {
+	ReactNode,
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+} from 'react';
 
-export default function Shortcut({ command, callback, node = null, children }) {
+interface ShortcutProp {
+	command: string;
+	callback: () => void;
+	node?: HTMLElement | null;
+	children: ReactNode;
+}
+
+export default function Shortcut({
+	command,
+	callback,
+	node = null,
+	children,
+}: ShortcutProp) {
 	// implement the callback ref pattern
 	const [combination, cKey] = command.split('+');
 
-	const callbackRef = useRef(callback);
+	const callbackRef = useRef<() => void>(callback);
+
 	useLayoutEffect(() => {
 		callbackRef.current = callback;
 	});
 
 	// handle what happens on key press
 	const handleKeyPress = useCallback(
-		(event) => {
+		(event: any) => {
 			if (event.key === cKey && event[combination]) {
 				callbackRef.current();
 			}

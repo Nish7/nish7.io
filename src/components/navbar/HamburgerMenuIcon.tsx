@@ -1,7 +1,11 @@
 import { CloseButton, Icon } from '@chakra-ui/react';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { GlobalNavigationContextInterface } from '../context/GlobalNavigationContext';
 
-function HamburgerMenuIcon({ isOpen, setIsOpen }) {
+function HamburgerMenuIcon({
+	isOpen,
+	setIsOpen,
+}: GlobalNavigationContextInterface) {
 	return (
 		<Icon
 			zIndex={2}

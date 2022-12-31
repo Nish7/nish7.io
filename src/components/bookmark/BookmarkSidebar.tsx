@@ -2,8 +2,17 @@ import React from 'react';
 import SidebarLayout from '../layouts/SidebarLayout';
 import BookmarkItem from './BookmarkItem';
 import { useRouter } from 'next/router';
+import { BookmarkProp } from '@/lib/types/interface';
 
-const BookmarkSidebar = ({ bookmarks = [], isPage = false }) => {
+interface BookmarkSidebarProp {
+	bookmarks: BookmarkProp[];
+	isPage?: boolean;
+}
+
+const BookmarkSidebar = ({
+	bookmarks = [],
+	isPage = false,
+}: BookmarkSidebarProp) => {
 	const {
 		query: { id },
 	} = useRouter();

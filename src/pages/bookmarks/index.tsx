@@ -1,8 +1,9 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
-import { Flex } from '@chakra-ui/react';
 import { supabase } from '@/lib/supabase';
+import { Flex } from '@chakra-ui/react';
+import { ReactElement } from 'react';
 
 function Bookmarks() {
 	return (
@@ -13,7 +14,7 @@ function Bookmarks() {
 	);
 }
 
-Bookmarks.getLayout = function getLayout(page) {
+Bookmarks.getLayout = function getLayout(page: ReactElement) {
 	const { props } = page;
 
 	return (

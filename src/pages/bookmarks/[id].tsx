@@ -4,66 +4,71 @@ import { FiLink } from 'react-icons/fi';
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import TagLabel from '@/components/tag/TagLabel';
 import HeadMeta from '@/components/layouts/HeadMeta';
-import { supabase } from '@/lib/supabase';
 import { tags_colors } from '@/lib/consts';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabase';
+import { BookmarkProp } from '@/lib/types/interface';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { ReactElement } from 'react';
 
-const bookmarkPage = ({ bookmarksData }) => {
+const BookmarkPage = ({ bookmarksData }: { bookmarksData: BookmarkProp[] }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const router = useRouter();
 	const { id } = router.query;
 
-	const {
-		created_at,
-		name,
-		description,
-		link,
-		type: tag,
-	} = bookmarksData.find(
+	const bookmark = bookmarksData.find(
 		(b) => b.name.toLowerCase().split(' ').join('-').trim() === id
 	);
 
-	return (
-		<>
-			<HeadMeta title={name} />
-			<Box
-				w={['100%', '100%', '70%']}
-				mt={[10, 10, 0]}
-				p={[4, 4, 8]}
-				mx="auto"
-				h="auto"
-			>
-				<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
-
-				<Text fontWeight="bold" fontSize="2xl">
-					{name.split('-').join(' ')}
-				</Text>
-
-				<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
-					<Icon boxSize={3} as={FiLink} mr={1} /> {new URL(link).host}
-				</Text>
-
-				<Text fontWeight="light" fontStyle="italic" color="grey" fontSize="md">
-					{description}
-				</Text>
-
-				<Link
-					style={{ textDecoration: 'none' }}
-					href={link}
-					target="_blank"
-					passHref
+	if (bookmark) {
+		const { name, type: tag, description, link } = bookmark;
+		return (
+			<>
+				<HeadMeta title={bookmark.name} />
+				<Box
+					w={['100%', '100%', '70%']}
+					mt={[10, 10, 0]}
+					p={[4, 4, 8]}
+					mx="auto"
+					h="auto"
 				>
-					<Button colorScheme="blue" size="md" w="100%" mx="auto" my={10}>
-						<Icon boxSize={3} as={FiLink} mr={1} />
-						<Text>Visit</Text>
-					</Button>
-				</Link>
-			</Box>
-		</>
-	);
+					<TagLabel color={tags_colors?.[tag]}>{tag}</TagLabel>
+
+					<Text fontWeight="bold" fontSize="2xl">
+						{name.split('-').join(' ')}
+					</Text>
+
+					<Text my={2} fontWeight="light" color="light-grey" fontSize="md">
+						<Icon boxSize={3} as={FiLink} mr={1} /> {new URL(link).host}
+					</Text>
+
+					<Text
+						fontWeight="light"
+						fontStyle="italic"
+						color="grey"
+						fontSize="md"
+					>
+						{description ?? ''}
+					</Text>
+
+					<Link
+						style={{ textDecoration: 'none' }}
+						href={link}
+						target="_blank"
+						passHref
+					>
+						<Button colorScheme="blue" size="md" w="100%" mx="auto" my={10}>
+							<Icon boxSize={3} as={FiLink} mr={1} />
+							<Text>Visit</Text>
+						</Button>
+					</Link>
+				</Box>
+			</>
+		);
+	}
 };
 
-bookmarkPage.getLayout = function getLayout(page) {
+BookmarkPage.getLayout = function getLayout(page: ReactElement) {
 	const { props } = page;
 
 	return (
@@ -74,18 +79,26 @@ bookmarkPage.getLayout = function getLayout(page) {
 	);
 };
 
-export async function getStaticPaths() {
-	let { data: bookmarksData } = await supabase.from('Bookmark').select('*');
+export const getStaticPaths: GetStaticPaths = async () => {
+	let { data: bookmarksData } = await supabase
+		.from<BookmarkProp>('Bookmark')
+		.select('*');
 
-	const paths = bookmarksData.map((p) => ({
-		params: { id: p.name.toLowerCase().split(' ').join('-').trim() },
-	}));
+	const paths = bookmarksData
+		? bookmarksData.map((p) => ({
+				params: {
+					id: (p.name ?? '').toLowerCase().split(' ').join('-').trim(),
+				},
+		  }))
+		: [];
 
 	return { paths, fallback: 'blocking' };
-}
+};
 
-export async function getStaticProps() {
-	let { data: bookmarksData } = await supabase.from('Bookmark').select('*');
+export const getStaticProps: GetStaticProps = async () => {
+	let { data: bookmarksData } = await supabase
+		.from<BookmarkProp>('Bookmark')
+		.select('*');
 
 	return {
 		props: {
@@ -93,6 +106,6 @@ export async function getStaticProps() {
 		},
 		revalidate: 60,
 	};
-}
+};
 
-export default bookmarkPage;
+export default BookmarkPage;

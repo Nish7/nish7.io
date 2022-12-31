@@ -1,19 +1,25 @@
+import { ProjectProp } from '@/lib/types/interface';
 import { useRouter } from 'next/router';
 import SidebarLayout from '../layouts/SidebarLayout';
 import ProjectItem from './ProjectItem';
 
-const ProjectSidebar = ({ projects = [], isPage = false }) => {
+interface ProjectSidebarProp {
+	projects: ProjectProp[];
+	isPage?: boolean;
+}
+
+const ProjectSidebar = ({ projects, isPage = false }: ProjectSidebarProp) => {
 	const {
 		query: { id },
 	} = useRouter();
 
 	return (
 		<SidebarLayout title="Projects" isPage={isPage}>
-			{projects.map(({ name, language, id: projectId }, idx) => (
+			{projects.map(({ name, language }, idx) => (
 				<ProjectItem
 					active={id == name.toLowerCase().split(' ').join('-')}
 					title={name}
-					language={language}
+					language={language ?? 'Default'}
 					key={idx}
 				/>
 			))}
