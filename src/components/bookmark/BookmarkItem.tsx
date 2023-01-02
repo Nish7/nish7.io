@@ -1,5 +1,6 @@
 import { Box, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
+import { memo } from 'react';
 import { FiLink } from 'react-icons/fi';
 
 interface BookmarkItemProp {
@@ -34,4 +35,4 @@ function BookmarkItem({ title, site, active }: BookmarkItemProp) {
 	);
 }
 
-export default BookmarkItem;
+export default memo(BookmarkItem);

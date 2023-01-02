@@ -1,5 +1,5 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import React, { memo } from 'react';
 
 function PageBackground() {
 	const color = useColorModeValue('rgba(0,0,0,0.7)', 'rgba(255,255,255,0.5)');
@@ -20,4 +20,4 @@ function PageBackground() {
 	);
 }
 
-export default PageBackground;
+export default memo(PageBackground);

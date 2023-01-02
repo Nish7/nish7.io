@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import SidebarLayout from '../layouts/SidebarLayout';
 import BookmarkItem from './BookmarkItem';
 import { useRouter } from 'next/router';
@@ -31,4 +31,4 @@ const BookmarkSidebar = ({
 	);
 };
 
-export default BookmarkSidebar;
+export default memo(BookmarkSidebar);

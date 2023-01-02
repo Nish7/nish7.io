@@ -2,6 +2,7 @@ import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
+import { memo } from 'react';
 
 function CurrentPlaying() {
 	const { data } = useSWR('/api/spotify/currentPlaying', fetcher);
@@ -18,4 +19,4 @@ function CurrentPlaying() {
 	);
 }
 
-export default CurrentPlaying;
+export default memo(CurrentPlaying);

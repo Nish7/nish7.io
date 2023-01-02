@@ -1,5 +1,6 @@
 import { ProjectProp } from '@/lib/types/interface';
 import { useRouter } from 'next/router';
+import { memo } from 'react';
 import SidebarLayout from '../layouts/SidebarLayout';
 import ProjectItem from './ProjectItem';
 
@@ -27,4 +28,4 @@ const ProjectSidebar = ({ projects, isPage = false }: ProjectSidebarProp) => {
 	);
 };
 
-export default ProjectSidebar;
+export default memo(ProjectSidebar);

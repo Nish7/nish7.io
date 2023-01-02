@@ -11,6 +11,7 @@ import NavLink from './NavLink';
 import SocialList from './SocialList';
 import ProjectList from './ProjectList';
 import MeList from './MeList';
+import { memo } from 'react';
 
 function Navbar() {
 	const { isOpen, setIsOpen } = useGlobalNavigationContext();
@@ -61,4 +62,4 @@ function Navbar() {
 	);
 }
 
-export default Navbar;
+export default memo(Navbar);

@@ -1,9 +1,9 @@
 import { Text } from '@chakra-ui/react';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { useGlobalNavigationContext } from '../context/GlobalNavigationContext';
 
-export default function SectionTitle({
+function SectionTitle({
 	p_href = '/',
 	children,
 }: {
@@ -27,3 +27,5 @@ export default function SectionTitle({
 		</Text>
 	);
 }
+
+export default memo(SectionTitle);

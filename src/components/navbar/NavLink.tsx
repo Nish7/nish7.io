@@ -1,7 +1,7 @@
 import { Button, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ReactElement, ReactNode } from 'react';
+import { memo, ReactElement, ReactNode } from 'react';
 import { useGlobalNavigationContext } from '../context/GlobalNavigationContext';
 
 interface NavlinkProp {
@@ -50,4 +50,4 @@ function NavLink({
 	);
 }
 
-export default NavLink;
+export default memo(NavLink);

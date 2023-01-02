@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { tags_colors } from '@/lib/consts';
 import StatusIcon from '../navbar/StatusIcon';
+import { memo } from 'react';
 
 interface ProjectItemProp {
 	title: string;
@@ -35,4 +36,4 @@ function ProjectItem({ title, language, active }: ProjectItemProp) {
 	);
 }
 
-export default ProjectItem;
+export default memo(ProjectItem);

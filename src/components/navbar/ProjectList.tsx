@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import NavLink from './NavLink';
 import SectionTitle from './SectionTitle';
 import StatusIcon from './StatusIcon';
@@ -35,4 +35,4 @@ function ProjectList() {
 	);
 }
 
-export default ProjectList;
+export default memo(ProjectList);

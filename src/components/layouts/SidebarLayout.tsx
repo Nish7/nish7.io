@@ -7,6 +7,7 @@ import {
 	ReactNode,
 	SetStateAction,
 	Dispatch,
+	memo,
 } from 'react';
 import Shortcut from './Shortcut';
 
@@ -93,6 +94,4 @@ const Sidebar = ({
 	);
 };
 
-
-
-export default SidebarLayout;
+export default memo(SidebarLayout);

@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import React from 'react';
+import React, { memo } from 'react';
 import { AiFillFile } from 'react-icons/ai';
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import NavLink from './NavLink';
@@ -49,4 +49,4 @@ function SocialList() {
 	);
 }
 
-export default SocialList;
+export default memo(SocialList);

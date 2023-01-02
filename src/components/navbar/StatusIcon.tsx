@@ -1,7 +1,8 @@
 import { Icon } from '@chakra-ui/react';
+import { memo } from 'react';
 import { BsCircleFill } from 'react-icons/bs';
 
-export default function StatusIcon({
+function StatusIcon({
 	color,
 	...rest
 }: {
@@ -12,3 +13,5 @@ export default function StatusIcon({
 		<Icon as={BsCircleFill} color={`${color}.500`} boxSize={2} {...rest} />
 	);
 }
+
+export default memo(StatusIcon);

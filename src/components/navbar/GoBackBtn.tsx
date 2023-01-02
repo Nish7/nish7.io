@@ -1,6 +1,7 @@
 import { Icon } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { memo } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 
 function GoBackBtn() {
@@ -21,4 +22,4 @@ function GoBackBtn() {
 	);
 }
 
-export default GoBackBtn;
+export default memo(GoBackBtn);

@@ -1,4 +1,5 @@
 import { CloseButton, Icon } from '@chakra-ui/react';
+import { memo } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { GlobalNavigationContextInterface } from '../context/GlobalNavigationContext';
 
@@ -20,4 +21,4 @@ function HamburgerMenuIcon({
 	);
 }
 
-export default HamburgerMenuIcon;
+export default memo(HamburgerMenuIcon);

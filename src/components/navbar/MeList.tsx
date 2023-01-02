@@ -1,5 +1,5 @@
 import { Box, Link } from '@chakra-ui/react';
-import React from 'react';
+import React, { memo } from 'react';
 import { AiFillBook, AiFillStar } from 'react-icons/ai';
 import { BsStack } from 'react-icons/bs';
 import { RiGameFill } from 'react-icons/ri';
@@ -21,4 +21,4 @@ function MeList() {
 	);
 }
 
-export default MeList;
+export default memo(MeList);

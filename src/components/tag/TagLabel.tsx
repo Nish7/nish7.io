@@ -1,6 +1,6 @@
 import { colorSchemes } from '@/lib/consts';
 import { Tag, Text } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
 const TagLabel = ({
 	color = 'gray',
@@ -27,4 +27,4 @@ const TagLabel = ({
 	);
 };
 
-export default TagLabel;
+export default memo(TagLabel);

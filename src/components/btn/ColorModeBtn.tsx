@@ -4,6 +4,7 @@ import {
 	useColorMode,
 	useColorModeValue,
 } from '@chakra-ui/react';
+import { memo } from 'react';
 
 function ColorModeBtn() {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -16,4 +17,4 @@ function ColorModeBtn() {
 	);
 }
 
-export default ColorModeBtn;
+export default memo(ColorModeBtn);
