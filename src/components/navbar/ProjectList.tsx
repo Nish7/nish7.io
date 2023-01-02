@@ -11,12 +11,7 @@ function ProjectList() {
 	const [projectsData, setProjectData] = useState<ProjectProp[]>();
 
 	useEffect(() => {
-		const fetch = async () => {
-			const data = await getProjects() as ProjectProp[];
-			setProjectData(data);
-		};
-
-		fetch();
+		getProjects().then((data) => setProjectData(data as ProjectProp[]));
 	}, []);
 
 	return (

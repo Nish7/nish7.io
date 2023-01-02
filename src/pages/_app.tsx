@@ -28,7 +28,7 @@ function RenderPageComp({ Component, pageProps }: Omit<_AppProps, 'router'>) {
 
 	useEffect(() => {
 		if (isLargerThan800) {
-			setIsOpen(true);
+			setIsOpen(false);
 		}
 	}, [isLargerThan800, setIsOpen]);
 

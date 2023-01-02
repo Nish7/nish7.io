@@ -109,7 +109,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		params: { id: p.name.toLowerCase().split(' ').join('-').trim() },
 	}));
 
-	return { paths, fallback: 'blocking' };
+	return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async () => {

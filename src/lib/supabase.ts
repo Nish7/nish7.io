@@ -12,22 +12,24 @@ class Supabase_Api {
 	}
 
 	async fetchBookmarks() {
-		return (await this.supabase
-			.from('Bookmark')
-			.select('*'))['data'] as any as BookmarkProp[];
+		return (await this.supabase.from('Bookmark').select('*'))[
+			'data'
+		] as any as BookmarkProp[];
 	}
 
 	async fetchEducation() {
-		return (await this.supabase
-			.from('Education')
-			.select('*'))['data'] as any as EducationProp[];
+		return (await this.supabase.from('Education').select('*'))[
+			'data'
+		] as any as EducationProp[];
 	}
 
 	async fetchWork() {
-	return (await this.supabase
-			.from('Work')
-			.select('*')
-			.order('start_date', { ascending: false }))['data'] as any as WorkProp[];
+		return (
+			await this.supabase
+				.from('Work')
+				.select('*')
+				.order('start_date', { ascending: false })
+		)['data'] as any as WorkProp[];
 	}
 }
 
