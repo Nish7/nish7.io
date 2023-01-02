@@ -1,16 +1,14 @@
-import { createContext, useContext } from 'react';
+import { createContext, Dispatch, SetStateAction, useContext } from 'react';
 
 export interface GlobalNavigationContextInterface {
 	isOpen: boolean;
-	setIsOpen: (b: boolean) => void;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const GlobalNavigationContext = createContext<GlobalNavigationContextInterface>(
-	{
-		isOpen: false,
-		setIsOpen: () => {},
-	}
-);
+export const GlobalNavigationContext =
+	createContext<GlobalNavigationContextInterface>(
+		{} as GlobalNavigationContextInterface
+	);
 
 export const useGlobalNavigationContext = () => {
 	return useContext(GlobalNavigationContext);

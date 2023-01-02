@@ -10,37 +10,42 @@ import { useGlobalNavigationContext } from '@/components/context/GlobalNavigatio
 import { _AppProps } from '@/lib/types';
 
 function MyApp({ Component, pageProps }: _AppProps) {
-	const getLayout = Component.getLayout || ((page) => page);
-
-	const { isOpen, setIsOpen } = useGlobalNavigationContext();
-	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
-
-	useEffect(() => {
-		if (isLargerThan800) {
-			setIsOpen(false);
-		}
-	}, [isLargerThan800, setIsOpen]);
-
 	return (
 		<Providers>
 			<Flex>
 				<Navbar />
-
-				<Flex
-					display={{
-						base: !isOpen ? 'flex' : 'none',
-						md: 'flex',
-						lg: 'flex',
-					}}
-					w={['100%', '100%', '85%']}
-					minH="100vh"
-					flexDirection="column"
-					justifyContent={['flex-start', 'flex-start', 'center']}
-				>
-					{getLayout(<Component {...pageProps} />)}
-				</Flex>
+				<RenderPageComp Component={Component} pageProps={pageProps} />
 			</Flex>
 		</Providers>
+	);
+}
+
+function RenderPageComp({ Component, pageProps }: Omit<_AppProps, 'router'>) {
+	const { isOpen, setIsOpen } = useGlobalNavigationContext();
+	const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+
+	const getLayout = Component.getLayout || ((page) => page);
+
+	useEffect(() => {
+		if (isLargerThan800) {
+			setIsOpen(true);
+		}
+	}, [isLargerThan800, setIsOpen]);
+
+	return (
+		<Flex
+			display={{
+				base: !isOpen ? 'flex' : 'none',
+				md: 'flex',
+				lg: 'flex',
+			}}
+			w={['100%', '100%', '85%']}
+			minH="100vh"
+			flexDirection="column"
+			justifyContent={['flex-start', 'flex-start', 'center']}
+		>
+			{getLayout(<Component {...pageProps} />)}
+		</Flex>
 	);
 }
 
