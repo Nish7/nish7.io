@@ -6,7 +6,7 @@ import TagLabel from '@/components/tag/TagLabel';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import { tags_colors } from '@/lib/consts';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import supabase from '@/lib/supabase';
 import { BookmarkProp } from '@/lib/types/interface';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
@@ -80,14 +80,12 @@ BookmarkPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	let { data: bookmarksData } = await supabase
-		.from<BookmarkProp>('Bookmark')
-		.select('*');
+	const bookmarksData = await supabase.fetchBookmarks();
 
 	const paths = bookmarksData
 		? bookmarksData.map((p) => ({
 				params: {
-					id: (p.name ?? '').toLowerCase().split(' ').join('-').trim(),
+					id: p.name.toLowerCase().split(' ').join('-').trim(),
 				},
 		  }))
 		: [];
@@ -96,9 +94,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-	let { data: bookmarksData } = await supabase
-		.from<BookmarkProp>('Bookmark')
-		.select('*');
+	const bookmarksData = await supabase.fetchBookmarks();
 
 	return {
 		props: {

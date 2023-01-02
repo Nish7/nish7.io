@@ -1,8 +1,9 @@
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import PageBackground from '@/components/layouts/PageBackground';
-import { supabase } from '@/lib/supabase';
+import supabase from '@/lib/supabase';
 import { Flex } from '@chakra-ui/react';
+import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
 function Bookmarks() {
@@ -25,8 +26,8 @@ Bookmarks.getLayout = function getLayout(page: ReactElement) {
 	);
 };
 
-export async function getStaticProps() {
-	let { data: bookmarksData } = await supabase.from('Bookmark').select('*');
+export const getStaticProps: GetStaticProps = async () => {
+	const bookmarksData = await supabase.fetchBookmarks();
 
 	return {
 		props: {
@@ -34,6 +35,6 @@ export async function getStaticProps() {
 		},
 		revalidate: 10,
 	};
-}
+};
 
 export default Bookmarks;

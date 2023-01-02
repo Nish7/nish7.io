@@ -2,9 +2,10 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import Education from '@/components/home/Education';
 import Work from '@/components/home/Work';
-import { supabase } from '@/lib/supabase';
+
 import { GetStaticProps } from 'next';
 import { EducationProp, WorkProp } from '@/lib/types/interface';
+import supabase from '@/lib/supabase';
 
 export default function Home({
 	workData,
@@ -53,14 +54,8 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	let { data: workData } = await supabase
-		.from<WorkProp>('Work')
-		.select('*')
-		.order('start_date', { ascending: false });
-
-	let { data: educationData } = await supabase
-		.from<EducationProp>('Education')
-		.select('*');
+	const workData = await supabase.fetchWork();
+	const educationData = await supabase.fetchEducation();
 
 	return {
 		props: {

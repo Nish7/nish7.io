@@ -34,7 +34,7 @@ function NavLink({
 			<Button
 				onClick={() => setIsOpen(false)}
 				h="auto"
-				isFullWidth
+				w={'100%'}
 				leftIcon={icon}
 				justifyContent="flex-start"
 				variant={active ? 'solid' : 'ghost'}

@@ -9,6 +9,7 @@ import HeadMeta from '@/components/layouts/HeadMeta';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { ProjectProp } from '@/lib/types/interface';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 const ProjectPage = ({ projectsData }: { projectsData: ProjectProp[] }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -101,7 +102,7 @@ ProjectPage.getLayout = function getLayout(page: ReactElement) {
 	);
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
 	const projectsData = await getProjects();
 
 	const paths = projectsData.map((p) => ({
@@ -111,7 +112,7 @@ export const getStaticPaths = async () => {
 	return { paths, fallback: 'blocking' };
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const projectsData = await getProjects();
 
 	return {
@@ -120,6 +121,6 @@ export async function getStaticProps() {
 		},
 		revalidate: 10,
 	};
-}
+};
 
 export default ProjectPage;
