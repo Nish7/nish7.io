@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
 import { FiLink } from 'react-icons/fi';
 import BookmarkSidebar from '@/components/bookmark/BookmarkSidebar';
@@ -7,18 +6,17 @@ import HeadMeta from '@/components/layouts/HeadMeta';
 import { tags_colors } from '@/lib/consts';
 import Link from 'next/link';
 import supabase from '@/lib/supabase';
-import { BookmarkProp } from '@/lib/types/interface';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { BookmarkProp, IParams } from '@/lib/types/interface';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { ReactElement } from 'react';
 
-const BookmarkPage = ({ bookmarksData }: { bookmarksData: BookmarkProp[] }) => {
+const BookmarkPage = ({
+	bookmark,
+}: {
+	bookmarksData: BookmarkProp[];
+	bookmark: BookmarkProp;
+}) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const router = useRouter();
-	const { id } = router.query;
-
-	const bookmark = bookmarksData.find(
-		(b) => b.name.toLowerCase().split(' ').join('-').trim() === id
-	);
 
 	if (bookmark) {
 		const { name, type: tag, description, link } = bookmark;
@@ -73,7 +71,7 @@ BookmarkPage.getLayout = function getLayout(page: ReactElement) {
 
 	return (
 		<Flex>
-			<BookmarkSidebar bookmarks={props.bookmarksData} isPage />
+			<BookmarkSidebar bookmarks={props.allbookmarks} isPage />
 			{page}
 		</Flex>
 	);
@@ -90,17 +88,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		  }))
 		: [];
 
-	return { paths, fallback: false };
+	return { paths, fallback: 'blocking' };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (
+	context: GetStaticPropsContext
+) => {
 	const bookmarksData = await supabase.fetchBookmarks();
+	const { id } = context.params as IParams;
+
+	const bookmark = bookmarksData.find(
+		(b) => b.name.toLowerCase().split(' ').join('-').trim() === id
+	);
+
+	if (!bookmark) {
+		return {
+			notFound: true,
+		};
+	}
 
 	return {
 		props: {
-			bookmarksData,
+			allbookmarks: bookmarksData,
+			bookmark,
 		},
-		revalidate: 60,
+		revalidate: 10,
 	};
 };
 

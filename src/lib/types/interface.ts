@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from 'querystring';
 import type { Database } from './supabaseTypes';
 
 export type WorkProp = Database['public']['Tables']['Work']['Row'];
@@ -16,3 +17,7 @@ export type ProjectProp = {
 	topics: string[] | undefined;
 	homepage: string | null;
 };
+
+export interface IParams extends ParsedUrlQuery {
+	id: string;
+}
