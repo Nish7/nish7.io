@@ -8,7 +8,7 @@ import SectionTitle from './SectionTitle';
 
 function MeList() {
 	return (
-		<Box mt={10}>
+		<Box mt={8}>
 			<SectionTitle p_href="/me">Me</SectionTitle>
 
 			<NavLink href="/bookmarks" icon={<AiFillBook />}>

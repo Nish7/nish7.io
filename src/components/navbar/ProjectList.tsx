@@ -15,7 +15,7 @@ function ProjectList() {
 	}, []);
 
 	return (
-		<Box mt={10}>
+		<Box mt={8}>
 			<SectionTitle p_href="/projects">Recent Projects</SectionTitle>
 
 			{projectsData &&
