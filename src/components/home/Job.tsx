@@ -1,5 +1,6 @@
 import { Divider, Flex, Text } from '@chakra-ui/react';
 import { memo } from 'react';
+import { format } from 'date-fns';
 
 function Job({
 	comp,
@@ -13,17 +14,18 @@ function Job({
 	end_date: string | null;
 }) {
 	const start = new Date(start_date);
-	const end = new Date(end_date ?? '');
-
 	start.setMonth(start.getMonth() + 1);
-	end.setMonth(end.getMonth() + 1);
+	const start_month = format(start, 'MMM');
 
-	const start_month = start.toLocaleString([], { month: 'short' });
-	const end_month = end.toLocaleString([], { month: 'short' });
+	let dur = `${start_month} ${start.getFullYear()} - Present`;
 
-	const dur = `${start_month} ${start.getFullYear()} -  ${
-		end_date ? end_month + ' ' + end.getFullYear() : 'Present'
-	}`;
+	if (end_date) {
+		const end = new Date(end_date);
+		end.setMonth(end.getMonth() + 1);
+		const end_month = format(end, 'MMM');
+
+		dur = `${start_month} ${start.getFullYear()} - ${end_month} ${end.getFullYear()}`;
+	}
 
 	return (
 		<Flex justify="space-between" align="center" mb={2}>

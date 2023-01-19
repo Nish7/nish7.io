@@ -1,5 +1,6 @@
 import { Divider, Flex, Text } from '@chakra-ui/react';
 import { memo } from 'react';
+import { format } from 'date-fns';
 
 function Study({
 	title,
@@ -15,8 +16,8 @@ function Study({
 	const start = new Date(start_date);
 	const end = new Date(end_date);
 
-	const start_month = start.toLocaleString([], { month: 'short' });
-	const end_month = end.toLocaleString([], { month: 'short' });
+	const start_month = format(start, 'MMM');
+	const end_month = format(end, 'MMM');
 
 	const dur = `${start_month} ${start.getFullYear()} -  ${
 		end_date ? end_month + ' ' + end.getFullYear() : 'Present'

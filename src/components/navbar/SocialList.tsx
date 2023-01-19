@@ -7,7 +7,7 @@ import SectionTitle from './SectionTitle';
 
 function SocialList() {
 	return (
-		<Box mt={10}>
+		<Box mt={8}>
 			<SectionTitle>Social</SectionTitle>
 
 			<NavLink
