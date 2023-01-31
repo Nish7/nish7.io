@@ -4,6 +4,7 @@ import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-sans/700.css';
 import { useEffect } from 'react';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/navbar';
 import Providers from '@/components/providers';
 import { useGlobalNavigationContext } from '@/components/context/GlobalNavigationContext';
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: _AppProps) {
 			<Flex>
 				<Navbar />
 				<RenderPageComp Component={Component} pageProps={pageProps} />
+				<Analytics />
 			</Flex>
 		</Providers>
 	);
