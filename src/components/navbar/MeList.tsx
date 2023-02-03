@@ -16,7 +16,9 @@ function MeList() {
 			</NavLink>
 			<NavLink icon={<BsStack />}>Stack</NavLink>
 			<NavLink icon={<AiFillStar />}>Gear</NavLink>
-			<NavLink icon={<RiGameFill />}>Misc</NavLink>
+			<NavLink href="/misc" icon={<RiGameFill />}>
+				Misc
+			</NavLink>
 		</Box>
 	);
 }
