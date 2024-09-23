@@ -39,7 +39,7 @@ export default function Home({
 						Software Developer with full-stack experience, primarily working
 						with Java(Type)Script. I am also an undergraduate computer science
 						student at Toronto Metropolitan University. Right now I&apos;m
-						building modern web applications and software at The Eyeopener.
+						building modern web applications and software at TheScore.
 					</Text>
 				</Flex>
 
