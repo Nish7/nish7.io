@@ -1,6 +1,11 @@
 export const tags_colors: Record<string, string> = {
 	JavaScript: 'yellow',
 	Java: 'orange',
+	C: 'pink',
+	'C++': 'light-pink',
+	Go: 'light-green',
+	Elixir: 'purple',
+	Lua: 'purple',
 	TypeScript: 'blue',
 	HTML: 'purple',
 	Shell: 'green',
