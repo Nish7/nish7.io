@@ -15,7 +15,7 @@ export default function Home({
 	educationData: EducationProp[];
 }) {
 	return (
-		<>
+		<Box alignContent="center" minH="100vh">
 			<HeadMeta title="Nishil Kapadia | Home" />
 
 			<Box w={['90%', '90%', '70%']} py={8} mx="auto" my={[16, 16, 0]}>
@@ -49,7 +49,7 @@ export default function Home({
 
 				<Education data={educationData} />
 			</Box>
-		</>
+		</Box>
 	);
 }
 

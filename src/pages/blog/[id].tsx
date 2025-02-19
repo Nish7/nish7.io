@@ -1,22 +1,17 @@
-import ProjectSidebar from '@/components/project/ProjectSidebar';
 import TagLabel from '@/components/tag/TagLabel';
-import { Flex, Text, Box, Icon, Button } from '@chakra-ui/react';
-import { FiLink } from 'react-icons/fi';
-import { tags_colors } from '@/lib/consts';
-import getProjects from '@/lib/getProjects';
+import {  Text, Box } from '@chakra-ui/react';
 import HeadMeta from '@/components/layouts/HeadMeta';
-import Link from 'next/link';
-import { ReactElement } from 'react';
 import { IParams, PostProp } from '@/lib/types/interface';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { getAllPostIds, getPostData } from '@/lib/getPosts';
 import rehypeHighlight from 'rehype-highlight';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 
 const BlogPage = ({ post }: { post: PostProp }) => {
 	const {
 		title,
-		date,
+		date, 
 		content,
 	} = post;
 
@@ -25,32 +20,32 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 			<HeadMeta title={title} />
 
 			<Box
-				w={['100%', '100%', '70%']}
-				mt={[10, 10, 0]}
+				w={['100%', '100%', '60%']}
+				mt={[10, 10, 10]}
 				p={[4, 4, 8]}
 				mx="auto"
-				h="auto"
+				minH="90vh"
 			>
-				<h1>{title}</h1>
-				<p>{date}</p>
-				<ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-					{content}
-				</ReactMarkdown>
+				<Text fontWeight="bold" fontSize="4xl">
+					{title.split('-').join(' ')}
+				</Text>
+
+				<Box mt={2} mb={10} fontWeight="light" color="light-grey" fontSize="md">
+					<TagLabel>{date}</TagLabel>
+				</Box>
+
+				<Box color="grey.300" fontSize="md">
+					<ReactMarkdown rehypePlugins={[remarkGfm, rehypeHighlight]}
+							components={{
+								p: ({ node, ...props }) => <p style={{ marginBottom: "1em" }} {...props} />,
+							  }}	>
+						{content}
+					</ReactMarkdown>
+				</Box>
 			</Box>
 		</>
 	);
 };
-
-// ProjectPage.getLayout = function getLayout(page: ReactElement) {
-// 	const { props } = page;
-
-// 	return (
-// 		<Flex>
-// 			<ProjectSidebar projects={props.allProjects} isPage />
-// 			{page}
-// 		</Flex>
-// 	);
-// };
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	return { paths: getAllPostIds(), fallback: 'blocking' };

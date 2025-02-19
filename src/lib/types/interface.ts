@@ -20,6 +20,7 @@ export type ProjectProp = {
 export type PostProp = {
 	title: string;
 	date: string;
+	slug: string;
 	content: string;
 }
 

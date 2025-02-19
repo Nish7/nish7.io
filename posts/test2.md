@@ -1,6 +1,6 @@
 ---
 title: "My Second Post"
-date: "2025-02-18"
+date: "2025-02"
 ---
 
 ## Hello World

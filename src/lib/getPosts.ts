@@ -13,7 +13,7 @@ export function getSortedPostsData() {
     const { data } = matter(fileContents);
 
     return {
-      id,
+      slug: id,
       ...(data as { title: string; date: string }),
     };
   }).sort((a, b) => (a.date < b.date ? 1 : -1));
