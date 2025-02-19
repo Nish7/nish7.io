@@ -12,13 +12,21 @@ Here’s a link to [Google](https://www.google.com).
 
 ## Code Testing
 
-Inline code: `console.log("Hello, world!");`
+Inline code:  `console.log("Hello, world!");`
 
 Block code:
 ```javascript
 function greet(name) {
   return `Hello, ${name}!`;
 }
+```
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+
+if __name__ == "__main__":
+    print(greet("world")) 
 ```
 
 ## Lists
@@ -36,5 +44,3 @@ function greet(name) {
    1. Sub-item 2.1
    2. Sub-item 2.2
 3. Third item
-
-console.log(greet("Harit"));

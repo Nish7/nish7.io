@@ -1,12 +1,16 @@
+import React from 'react';
 import TagLabel from '@/components/tag/TagLabel';
-import {  Text, Box } from '@chakra-ui/react';
+import {  Text, Box, Heading, List, ListItem, Code, Link as ChakraLink, useColorModeValue } from '@chakra-ui/react';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import { IParams, PostProp } from '@/lib/types/interface';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { getAllPostIds, getPostData } from '@/lib/getPosts';
-import rehypeHighlight from 'rehype-highlight';
+import Highlihgt, {SyntaxHighlighterProps} from "react-syntax-highlighter";
+const SyntaxHighlighter = (Highlihgt as any) as React.FC<SyntaxHighlighterProps>;
+import { githubGist, dracula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
+import Link from 'next/link';
 
 const BlogPage = ({ post }: { post: PostProp }) => {
 	const {
@@ -14,6 +18,8 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 		date, 
 		content,
 	} = post;
+
+	const theme = useColorModeValue(githubGist, dracula,);
 
 	return (
 		<>
@@ -35,10 +41,71 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 				</Box>
 
 				<Box color="grey.300" fontSize="md">
-					<ReactMarkdown rehypePlugins={[remarkGfm, rehypeHighlight]}
-							components={{
-								p: ({ node, ...props }) => <p style={{ marginBottom: "1em" }} {...props} />,
-							  }}	>
+					<ReactMarkdown remarkPlugins={[remarkGfm]} 
+						components={{
+							p: ({ node, ...props }) => <Text mb="1em" {...props} />,
+							h1: ({ node, ...props }) => (
+								<Heading as="h1" size="xl" mt="1.5em" mb="0.75em" {...props} />
+							),
+							h2: ({ node, ...props }) => (
+								<Heading as="h2" size="lg" mt="1.5em" mb="0.75em" {...props} />
+							),
+							h3: ({ node, ...props }) => (
+								<Heading as="h3" size="md" mt="1.25em" mb="0.5em" {...props} />
+							),
+							ul: ({ node, ...props }) => (
+								<List styleType="disc" pl="1.25em" mb="1em" {...props} />
+							),
+							ol: ({ node, ...props }) => (
+								<List as="ol" styleType="decimal" pl="1.25em" mb="1em" {...props} />
+							),
+							li: ({ node, ...props }) => <ListItem mb="0.5em" {...props} />,
+							blockquote: ({ children, ...props }) => (
+									<blockquote
+										style={{
+											borderLeft: "4px solid gray",
+											paddingLeft: "1em",
+											color: "gray.400",
+											fontStyle: "italic",
+											marginBottom: "1em",
+										}}
+										{...props}
+									>
+										{children}
+									</blockquote>
+							),
+							code(props) {
+								const {children, className, node, ...rest} = props
+								const match = /language-(\w+)/.exec(className || '')
+								return match ? (
+								  <SyntaxHighlighter
+									PreTag="div"
+									children={String(children).replace(/\n$/, '')}
+									language={match[1]}
+									style={theme}
+									customStyle={{
+										marginBottom: "1em",
+										padding: "1em",
+										borderRadius: "8px",
+										overflowX: "auto",
+										backgroundColor: "transparent",
+										border: "1px solid #44475a",
+									  }}
+								  />
+								) : (
+								  <Code {...rest} ml={1} variant="subtle" pl={1} borderRadius={4} className={className}>
+									{children}
+								  </Code>
+								)
+							  },
+							  a: ({ href, children, ...props }) => (
+								<Link href={href ?? ""} passHref legacyBehavior>
+								  <ChakraLink textDecoration="underline" _hover={{ color: "blue.400" }} {...props}>
+									{children}
+								  </ChakraLink>
+								</Link>
+							  ),
+						}}	>
 						{content}
 					</ReactMarkdown>
 				</Box>
