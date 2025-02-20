@@ -56,4 +56,9 @@ export const colorSchemes: Record<
 		borderColor: 'rgba(255, 93, 0,0.2)',
 		color: 'orange.500',
 	},
+	pink: {
+		bg: 'rgba(255, 0, 234,0.2)',
+		borderColor: 'rgba(255, 0, 234,0.2)',
+		color: 'pink.500',
+	}
 };

@@ -28,7 +28,6 @@ Projects.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async () => {
 	const projectsData = await getProjects();
-
 	return {
 		props: {
 			projectsData,

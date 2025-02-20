@@ -44,7 +44,7 @@ function Navbar() {
 					<NavLink href="/" icon={<AiFillHome />}>
 						Home
 					</NavLink>
-					<NavLink icon={<FaPen />}>Writing</NavLink>
+					<NavLink href="/blog" icon={<FaPen />}>Writing</NavLink>
 				</Box>
 
 				<MeList />
@@ -54,7 +54,7 @@ function Navbar() {
 				<SocialList />
 
 				<Box mt="auto" w="100%">
-					<CurrentPlaying />
+					{/* <CurrentPlaying />  // for local development */}
 					<ColorModeBtn />
 				</Box>
 			</Flex>

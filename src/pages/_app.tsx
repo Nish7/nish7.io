@@ -44,7 +44,7 @@ function RenderPageComp({ Component, pageProps }: Omit<_AppProps, 'router'>) {
 			w={['100%', '100%', '85%']}
 			minH="100vh"
 			flexDirection="column"
-			justifyContent={['flex-start', 'flex-start', 'center']}
+			justifyContent="flex-start"
 		>
 			{getLayout(<Component {...pageProps} />)}
 		</Flex>
