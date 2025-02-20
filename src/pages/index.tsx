@@ -18,7 +18,7 @@ export default function Home({
 		<Box alignContent="center" minH="100vh">
 			<HeadMeta title="Nishil Kapadia | Home" />
 
-			<Box w={['90%', '90%', '70%']} py={8} mx="auto" my={[16, 16, 0]}>
+			<Box w={['90%', '90%', '50%']} py={8} mx="auto" my={[16, 16, 0]}>
 				<Flex mb={14} align="center" flexDir={'column'}>
 					<Text
 						fontWeight="bold"
@@ -29,18 +29,15 @@ export default function Home({
 					>
 						Nishil Kapadia
 					</Text>
-					<Text fontWeight="semibold">Software Developer</Text>
-					<Text
+					<Text fontWeight="semibold">Software Engineer</Text>
+					<Box
 						mt={7}
-						w={['full', 'full', '80%']}
+						w={"full"}
 						letterSpacing={0.5}
 						textAlign={['center', 'center', 'left']}
 					>
-						Software Developer with full-stack experience, primarily working
-						with Java(Type)Script. I am also an undergraduate computer science
-						student at Toronto Metropolitan University. Right now I&apos;m
-						building modern web applications and software at TheScore.
-					</Text>
+						I'm super into building low-level systems and distributed apps that really push my limits, and I spend most of my time bashing my head to simplify and understand ideas—only to tear them apart and see what makes systems tick
+					</Box>
 				</Flex>
 
 				{/* <FeaturePost /> */}
