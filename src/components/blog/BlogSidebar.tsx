@@ -16,7 +16,7 @@ const BlogSidebar = ({ posts, isPage = false }: BlogSidebarProp) => {
 
 	return (
 		<SidebarLayout title="Blog" isPage={isPage}>
-			{posts.map(({ title, date, slug }, idx) => (
+			{posts && posts.map(({ title, date, slug }, idx) => (
 				<BlogItem
 					active={id?.includes(title)}
 					title={title}
