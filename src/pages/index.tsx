@@ -29,7 +29,7 @@ export default function Home({
 					>
 						Nishil Kapadia
 					</Text>
-					<Text fontWeight="semibold">Software Engineer</Text>
+					<Text fontWeight="semibold">Student</Text>
 					<Box
 						mt={7}
 						w={"full"}
