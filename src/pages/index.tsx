@@ -36,7 +36,7 @@ export default function Home({
 						letterSpacing={0.5}
 						textAlign={['center', 'center', 'left']}
 					>
-						I'm super into building low-level systems and distributed apps that really push my limits, and I spend most of my time bashing my head to simplify and understand ideas—only to tear them apart and see what makes systems tick
+						I&apos;m super into building low-level systems and distributed apps that really push my limits, and I spend most of my time bashing my head to simplify and understand ideas—only to tear them apart and see what makes systems tick
 					</Box>
 				</Flex>
 

@@ -80,8 +80,8 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 								const match = /language-(\w+)/.exec(className || '');
 								return match ? (
 									<SyntaxHighlighter
+										{...rest}
 										PreTag="div"
-										children={String(children).replace(/\n$/, '')}
 										language={match[1]}
 										style={theme}
 										customStyle={{
@@ -92,7 +92,9 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 											backgroundColor: "transparent",
 											border: "1px solid #44475a",
 										}}
-									/>
+									>
+										{String(children).replace(/\n$/, '')}
+									</SyntaxHighlighter>
 								) : (
 									<Code {...rest} ml={1} variant="subtle" pl={1} borderRadius={4} className={className}>
 										{children}
