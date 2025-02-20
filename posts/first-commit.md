@@ -1,5 +1,5 @@
 ---
-title: "My Commit"
+title: "First Commit"
 date: "2025-02"
 ---
 
