@@ -14,7 +14,7 @@ function SocialList() {
 				newTab
 				noActive
 				icon={<AiFillFile />}
-				href="https://drive.google.com/file/d/1QC6G8npqJJXqlJGD1O9LsytvMdtuxtUQ/view?usp=sharing"
+				href="https://drive.google.com/file/d/1xtjbksgFyxFB0UP-xKq4vF4mckU-OpJw/view?usp=sharing"
 			>
 				Resume
 			</NavLink>
