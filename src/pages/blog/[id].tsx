@@ -26,7 +26,7 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 			<HeadMeta title={title} />
 
 			<Box
-				w={['100%', '100%', '50%']}
+				w={['100%', '100%', '65%']}
 				mt={[10, 10, 10]}
 				p={[4, 4, 8]}
 				mx="auto"
