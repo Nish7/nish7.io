@@ -6,6 +6,7 @@ import Work from '@/components/home/Work';
 import { GetStaticProps } from 'next';
 import { EducationProp, WorkProp } from '@/lib/types/interface';
 import supabase from '@/lib/supabase';
+import FeaturePost from '@/components/home/FeaturePost';
 
 export default function Home({
 	workData,
@@ -29,22 +30,22 @@ export default function Home({
 					>
 						Nishil Kapadia
 					</Text>
-					<Text fontWeight="semibold">Student</Text>
 					<Box
 						mt={7}
 						w={"full"}
 						letterSpacing={0.5}
-						textAlign={['center', 'center', 'left']}
+						textAlign={'center'}
 					>
-						I&apos;m super into building low-level systems and distributed apps that really push my limits, and I spend most of my time bashing my head to simplify and understand ideas—only to tear them apart and see what makes systems tick
+						I&apos;m a developer living in Toronto, Ontario. <br/>
+						Today, I spend most of time working on compilers, backend and distrubuted systems.
 					</Box>
 				</Flex>
-
-				{/* <FeaturePost /> */}
 
 				<Work data={workData} />
 
 				<Education data={educationData} />
+				
+			 {/*<FeaturePost /> */}
 			</Box>
 		</Box>
 	);

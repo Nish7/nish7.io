@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { AiFillHome } from 'react-icons/ai';
+import { AiFillBook, AiFillHome } from 'react-icons/ai';
 import { FaPen } from 'react-icons/fa';
 import CurrentPlaying from './CurrentPlaying';
 import ColorModeBtn from '../btn/ColorModeBtn';
@@ -10,8 +10,8 @@ import GoBackBtn from './GoBackBtn';
 import NavLink from './NavLink';
 import SocialList from './SocialList';
 import ProjectList from './ProjectList';
-import MeList from './MeList';
 import { memo } from 'react';
+import { RiGameFill } from 'react-icons/ri';
 
 function Navbar() {
 	const { isOpen, setIsOpen } = useGlobalNavigationContext();
@@ -45,9 +45,13 @@ function Navbar() {
 						Home
 					</NavLink>
 					<NavLink href="/blog" icon={<FaPen />}>Writing</NavLink>
+					<NavLink href="/bookmarks" icon={<AiFillBook />}>
+						Bookmarks
+					</NavLink>
+					<NavLink href="/misc" icon={<RiGameFill />}>
+						Misc
+					</NavLink>
 				</Box>
-
-				<MeList />
 
 				<ProjectList />
 

@@ -13,15 +13,6 @@ function SocialList() {
 			<NavLink
 				newTab
 				noActive
-				icon={<AiFillFile />}
-				href="https://drive.google.com/file/d/1xtjbksgFyxFB0UP-xKq4vF4mckU-OpJw/view?usp=sharing"
-			>
-				Resume
-			</NavLink>
-
-			<NavLink
-				newTab
-				noActive
 				icon={<BsTwitter />}
 				href="https://twitter.com/nishilkapadia"
 			>

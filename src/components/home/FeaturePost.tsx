@@ -6,7 +6,7 @@ function FeaturePost() {
 	return (
 		<>
 			<Text fontSize="3xl" fontWeight="semibold" mb={5}>
-				Featured Posts
+				Writings
 			</Text>
 			<Flex justify="space-evenly">
 				<BlogBox title="Writing In Progess..." date="Coming Soon" />

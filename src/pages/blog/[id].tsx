@@ -5,9 +5,9 @@ import HeadMeta from '@/components/layouts/HeadMeta';
 import { IParams, PostProp } from '@/lib/types/interface';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { getAllPostIds, getPostData } from '@/lib/getPosts';
-import Highlihgt, { SyntaxHighlighterProps } from "react-syntax-highlighter";
-const SyntaxHighlighter = (Highlihgt as any) as React.FC<SyntaxHighlighterProps>;
-import { githubGist, dracula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { SyntaxHighlighterProps, Prism as Highlight } from "react-syntax-highlighter";
+const SyntaxHighlighter = (Highlight as any) as React.FC<SyntaxHighlighterProps>;
+import { oneLight, atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import Link from 'next/link';
@@ -19,7 +19,7 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 		content,
 	} = post;
 
-	const theme = useColorModeValue(githubGist, dracula,);
+	const theme = useColorModeValue(oneLight, atomDark);
 
 	return (
 		<>
@@ -86,11 +86,10 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 										style={theme}
 										customStyle={{
 											marginBottom: "1em",
+									    fontSize: "0.9rem",
 											padding: "1em",
-											borderRadius: "8px",
 											overflowX: "auto",
-											backgroundColor: "transparent",
-											border: "1px solid #44475a",
+											borderRadius: "8px"
 										}}
 									>
 										{String(children).replace(/\n$/, '')}
@@ -128,7 +127,7 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 				</Text>
 
 				<Text fontSize="sm">
-					Made with ❤️ and without GPT
+					Made with ❤️
 				</Text>
 			</Flex>
 		</>

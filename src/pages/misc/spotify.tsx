@@ -67,7 +67,7 @@ MiscPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-	const miscItems = ['Music'];
+	const miscItems = ['Spotify'];
 
 	return {
 		props: {
