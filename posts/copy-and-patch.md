@@ -3,7 +3,7 @@ title: "Copy-and-Patch with Zig"
 date: "2025-11"
 ---
 
-Copy-and-Patch (CnP) Compilation presents an interesting approach for building a baseline JIT (fast code generation with decent performance). CnP was originally introduced by this [paper](https://fredrikbk.com/publications/copy-and-patch.pdf), which proposes reusing existing Ahead-of-Time (AOT) compiler code generation. Instead of relying on a full optimizing backend (LLVM), it produces machine code directly by generating small code snippets for each operation. These snippets are then patched together at runtime to form executable code segments efficiently.
+Copy-and-Patch (CnP) Compilation presents an interesting approach for building a [baseline JIT](https://stackoverflow.com/a/59668640). CnP was originally introduced by this [paper](https://fredrikbk.com/publications/copy-and-patch.pdf), which proposes reusing existing Ahead-of-Time (AOT) compiler code generation. Instead of relying on a full optimizing backend ([LLVM](https://clang.llvm.org/)), it produces machine code directly by generating small code snippets for each operation. These snippets are then patched together at runtime to form executable code segments efficiently.
 
 - “stencils” are pre-compiled machine code fragments with “holes” for things like constants, stack offsets or branch targets.
 
@@ -27,7 +27,7 @@ I’ve been messing around with Zig for some time now, and I thought it would be
 
 For those new to it, here’s a quick primer on Zig: a relatively new language with explicit memory control (think C, but with guardrails), compile-time code execution, and an extensive build system. [Read more here](https://ziglang.org/learn/overview/).
 
-To understand CnP better, our goal will be to create standalone Mini Copy and Patch Compiler using Zig.
+To understand CnP better, our goal will be to create standalone Copy and Patch Compiler using Zig.
 
 ## Objective
 
@@ -35,7 +35,7 @@ To keep things scoped, my first milestone these are my objectives:
 
 - Generate a Stencil Library for supported operations.
 - Parse basic arithmetic “calculator” expressions and produce a bytecode stream.
-    - “2 + 3” → 5 . “2 * 4 = 8”
+    - “2 + 3” = 5 . “2 * 4" = 8
 - Choose appropriate stencil based on bytecode and allocate on an executable buffer
 - Code Generation on ARM64 (AArch64)
     - Scoped to ARM64 due lack of any documentation available
@@ -204,6 +204,8 @@ void stencil_op(int64_t *ctx);
 ```
 
 In C, we could use  `__attribute__((preserve_none))` allows direct emission of the *instruction body* without prologue or epilogue, producing exactly the raw code needed for a stencil. Zig does offers a `naked` calling convention that produces similar output. stripped of stack setup and teardown but it is primarily intended for inline assembly blocks. This means while `naked` functions can approximate the desired behaviour but they do not provide the same  register preservation or ABI flexibility that `preserve_none` enables.
+
+Zig also has handy [`setRuntimeSafety`](https://zig.guide/master/language-basics/runtime-safety/) builtin to disable bounds checking and other safety features in the stencil bodies. This is necessary because runtime safety checks introduce additional instructions and branches that would interfere with our patching offsets and break the predictable instruction layout we depend on.  
 
 We’ll handle this manually by writing helper functions to strip prologues and epilogues from generated stencils. This must be done per ISA, since each architecture will be emitting different entry and exit sequences. Not the most elegant but it works.
 
@@ -424,7 +426,8 @@ test "compile expression" {
 
     var ctx = Context.init();
     const result = func(&ctx);
-
+    
+    std.debug.print("= {d}\n", .{result});
     try std.testing.expectEqual(@as(i64, -7), result);
 }
 ```
@@ -436,8 +439,53 @@ The evaluation is performed entirely by the generated native code.
 ```bash
 $ zig test compiler.zig -O ReleaseFast --test-filter "compile expression"
 
-Expression: Expression: 5 3 8 * 2 / + 4 6 * -
+Expression: Expression: 5 3 8 * 2 / + 4 6 * - = -7
 All 1 tests passed.
+```
+
+We can also dump the executable buffer to inspect the generated assembly bytes.
+
+This is for `try expression.Expression.parse(std.testing.allocator, "2 + 3");`
+
+```bash
+0x00000000:  FD 7B BF A9    stp   x29, x30, [sp, #-0x10]!
+0x00000004:  FD 03 00 91    mov   x29, sp
+0x00000008:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x0000000C:  49 00 80 D2    movz  x9, #0x2
+0x00000010:  09 00 A0 F2    movk  x9, #0x0, lsl #16
+0x00000014:  09 00 C0 F2    movk  x9, #0x0, lsl #32
+0x00000018:  09 00 E0 F2    movk  x9, #0x0, lsl #48
+0x0000001C:  09 78 28 F8    str   x9,  [x0, x8, lsl #3]
+0x00000020:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000024:  08 05 00 91    add   x8,  x8, #1
+0x00000028:  08 00 04 F9    str   x8,  [x0, #0x800]
+0x0000002C:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000030:  09 05 00 D1    sub   x9,  x8, #1
+0x00000034:  09 00 04 F9    str   x9,  [x0, #0x800]
+0x00000038:  09 78 69 F8    ldr   x9,  [x0, x9, lsl #3]
+0x0000003C:  08 09 00 D1    sub   x8,  x8, #2
+0x00000040:  08 00 04 F9    str   x8,  [x0, #0x800]
+0x00000044:  0A 78 68 F8    ldr   x10, [x0, x8, lsl #3]
+0x00000048:  49 01 09 8B    add   x9,  x10, x9
+0x0000004C:  09 78 28 F8    str   x9,  [x0, x8, lsl #3]
+0x00000050:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000054:  08 05 00 91    add   x8,  x8, #1
+0x00000058:  08 00 04 F9    str   x8,  [x0, #0x800]
+0x0000005C:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000060:  69 00 80 D2    movz  x9, #0x3
+0x00000064:  09 00 A0 F2    movk  x9, #0x0, lsl #16
+0x00000068:  09 00 C0 F2    movk  x9, #0x0, lsl #32
+0x0000006C:  09 00 E0 F2    movk  x9, #0x0, lsl #48
+0x00000070:  09 78 28 F8    str   x9,  [x0, x8, lsl #3]
+0x00000074:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000078:  08 05 00 91    add   x8,  x8, #1
+0x0000007C:  08 00 04 F9    str   x8,  [x0, #0x800]
+0x00000080:  08 00 44 F9    ldr   x8,  [x0, #0x800]
+0x00000084:  08 05 00 D1    sub   x8,  x8, #1
+0x00000088:  08 00 04 F9    str   x8,  [x0, #0x800]
+0x0000008C:  00 78 68 F8    ldr   x0,  [x0, x8, lsl #3]
+0x00000090:  FD 7B C1 A8    ldp   x29, x30, [sp], #0x10
+0x00000094:  C0 03 5F D6    ret
 ```
 
 ### Challenges

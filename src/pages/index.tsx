@@ -19,7 +19,7 @@ export default function Home({
 		<Box alignContent="center" minH="100vh">
 			<HeadMeta title="Nishil Kapadia | Home" />
 
-			<Box w={['90%', '90%', '50%']} py={8} mx="auto" my={[16, 16, 0]}>
+			<Box w={['90%', '90%', '65%']} py={8} mx="auto" my={[16, 16, 0]}>
 				<Flex mb={14} align="center" flexDir={'column'}>
 					<Text
 						fontWeight="bold"
