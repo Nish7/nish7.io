@@ -11,7 +11,7 @@ import NavLink from './NavLink';
 import SocialList from './SocialList';
 import ProjectList from './ProjectList';
 import { memo } from 'react';
-import { RiGameFill } from 'react-icons/ri';
+import { RiGameFill, RiToolsFill } from 'react-icons/ri';
 
 function Navbar() {
 	const { isOpen, setIsOpen } = useGlobalNavigationContext();
@@ -47,6 +47,9 @@ function Navbar() {
 					<NavLink href="/blog" icon={<FaPen />}>Writing</NavLink>
 					<NavLink href="/bookmarks" icon={<AiFillBook />}>
 						Bookmarks
+					</NavLink>
+					<NavLink href="/uses" icon={<RiToolsFill />}>
+						Uses
 					</NavLink>
 					<NavLink href="/misc" icon={<RiGameFill />}>
 						Misc

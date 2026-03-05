@@ -3,6 +3,8 @@ export const tags_colors: Record<string, string> = {
 	Java: 'orange',
 	C: 'pink',
 	'C++': 'teal',
+	CPP: 'teal',
+	cpp: 'teal',
 	Go: 'green',
 	Elixir: 'purple',
 	Lua: 'purple',
@@ -60,5 +62,10 @@ export const colorSchemes: Record<
 		bg: 'rgba(255, 0, 234,0.2)',
 		borderColor: 'rgba(255, 0, 234,0.2)',
 		color: 'pink.500',
+	},
+	teal: {
+		bg: 'rgba(56, 178, 172, 0.2)',
+		borderColor: 'rgba(56, 178, 172, 0.2)',
+		color: 'teal.500',
 	}
 };
