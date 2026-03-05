@@ -9,20 +9,22 @@ const TagLabel = ({
 	color?: string;
 	children: ReactNode;
 }) => {
+	const scheme = colorSchemes[color] ?? colorSchemes.gray;
+
 	return (
 		<Tag
 			size="sm"
 			variant="solid"
-			bg={colorSchemes[color].bg}
+			bg={scheme.bg}
 			py={1.5}
 			px={3}
 			my={2}
 			mr={1}
 			borderRadius={10}
 			borderWidth="0.1px"
-			borderColor={colorSchemes[color].borderColor}
+			borderColor={scheme.borderColor}
 		>
-			<Text color={colorSchemes[color].color}>{children}</Text>
+			<Text color={scheme.color}>{children}</Text>
 		</Tag>
 	);
 };
