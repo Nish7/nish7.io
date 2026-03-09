@@ -11,6 +11,7 @@ export const tags_colors: Record<string, string> = {
 	TypeScript: 'blue',
 	HTML: 'purple',
 	Shell: 'green',
+	Zig: 'orange',
 	Website: 'red',
 	Portfolio: 'blue',
 	Reading: 'purple',
@@ -18,6 +19,18 @@ export const tags_colors: Record<string, string> = {
 };
 
 export const unwantedRepos = ['Nish7'];
+
+export const manualProjects = [
+	{
+		name: 'Zag-Smalltalk',
+		html_url: 'https://github.com/Zag-Research/Zag-Smalltalk',
+		description: 'Smalltalk VM Written in Zig with methods stored as type-annotated ASTs',
+		created_at: '2021-02-25T07:40:57Z',
+		language: 'Zig',
+		topics: ['compiler', 'interpreter', 'smalltalk', 'zig'],
+		homepage: null,
+	},
+];
 
 export const colorSchemes: Record<
 	string,
