@@ -16,7 +16,7 @@ export function getSortedPostsData() {
       slug: id,
       ...(data as { title: string; date: string }),
     };
-  }).sort((a, b) => (a.date < b.date ? 1 : -1));
+  }).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 export function getAllPostIds() {

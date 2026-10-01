@@ -1,6 +1,6 @@
 import React from 'react';
 import TagLabel from '@/components/tag/TagLabel';
-import { Text, Box, Heading, List, ListItem, Code, Link as ChakraLink, useColorModeValue, Flex } from '@chakra-ui/react';
+import { Text, Box, Heading, List, ListItem, Code, Link as ChakraLink, useColorModeValue, Flex, Button } from '@chakra-ui/react';
 import HeadMeta from '@/components/layouts/HeadMeta';
 import { IParams, PostProp } from '@/lib/types/interface';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
@@ -33,7 +33,7 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 				minH="90vh"
 			>
 				<Text fontWeight="bold" fontSize="4xl">
-					{title.split('-').join(' ')}
+					{title}
 				</Text>
 
 				<Box mt={2} mb={10} fontWeight="light" color="light-grey" fontSize="md">
@@ -101,11 +101,17 @@ const BlogPage = ({ post }: { post: PostProp }) => {
 								);
 							},
 							a: ({ href, children, ...props }) => (
+								href && /^https:\/\/zenodo\.org\/records\/\d+$/.test(href) && children === 'Read the paper' ? (
+									<Button as="a" href={href} colorScheme="blue" mt={6}>
+										{children}
+									</Button>
+								) : (
 								<Link href={href ?? ""} passHref legacyBehavior>
 									<ChakraLink textDecoration="underline" _hover={{ color: "blue.400" }} {...props}>
 										{children}
 									</ChakraLink>
 								</Link>
+								)
 							),
 						}}
 					>
