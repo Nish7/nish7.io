@@ -18,9 +18,12 @@ class Supabase_Api {
 	}
 
 	async fetchEducation() {
-		return (await this.supabase.from('Education').select('*'))[
-			'data'
-		] as any as EducationProp[];
+		return (
+			await this.supabase
+				.from('Education')
+				.select('*')
+				.order('start_date', { ascending: false })
+		)['data'] as any as EducationProp[];
 	}
 
 	async fetchWork() {
